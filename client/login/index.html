@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>clubs</title>
+	<meta name="viewport" content=" initial-scale=1, maximum-scale=1, minimum-scale=1">
+	<meta http-equiv="cache-control" content="public, max-age=86400" />
+</head>
+
+<body ng-app="_app" onload="document.body.style.opacity='1'">
+	
+	<!--ASSETS!-->
+	<link rel="stylesheet" type="text/css" href="theme.css"> 
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/sweetalert2/2.2.0/sweetalert2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/2.2.0/sweetalert2.min.css">
+	<!--END ASSETS!-->
+	
+	<div id="master">
+		<div id="head">
+			<p class="title" ng-bind="title"></p>
+			<center class="menu">
+				<a class="menuOption blue material-icons" href="#main" ng-style="mainSt">{{mainTx}}</a>
+				<a class="menuOption blue material-icons" href="#login" ng-style="loginSt">{{loginTx}}</a>
+				<a class="menuOption blue material-icons" href="#signup" ng-style="signupSt">{{signupTx}}</a>
+			</center>
+		</div>
+		<center id="view">
+			<div ng-view></div>
+		</center>
+	</div>
+	<br>
+	<!--
+	<center>
+		<a href="http://www.beyondsecurity.com/vulnerability-scanner-verification/clubs-sbojevets.c9users.io"><img src="https://seal.beyondsecurity.com/verification-images/clubs-sbojevets.c9users.io/vulnerability-scanner-2.gif" alt="Website Security Test" border="0" /></a>
+	</center>
+	!-->
+	<script src="./js/index.js"></script>
+	<script src="./js/controllers.js"></script>
+	<script src="./js/routes.js"></script>
+	<script>
+		setTimeout(function() {
+	      document.getElementById('master').style.opacity = 1;
+	    }, 250);
+	</script>
+
+</body>
+
+</html>

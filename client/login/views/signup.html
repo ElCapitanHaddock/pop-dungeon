@@ -1,0 +1,16 @@
+
+<div id='tar'>
+    <div>
+    <br>
+    <form ng-submit="submit()" ng-controller="submitCreds" name="register" class="authForm">
+        <input name="username" ng-model="username" placeholder="new email" class="authInput" required>
+        <input type="password" name="password" ng-model="password" placeholder="new pass" class="authInput" required>
+        <button class="button2">{{buttonText}}</button>
+    </form>
+</div>
+
+<script>
+    setTimeout(function() {
+      document.getElementById('tar').style.opacity = 1;
+    }, 200);
+</script>

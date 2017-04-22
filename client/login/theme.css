@@ -1,0 +1,305 @@
+
+html {
+    width: 100%;
+    height: 100%;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-image:url("http://www.androidguys.com/wp-content/uploads/2016/05/Poly-Lakeside.jpg");
+}
+
+body {
+    /*
+    https://s-media-cache-ak0.pinimg.com/originals/18/30/e5/1830e5815d863062fce30fe6cc0c8ab2.png
+    http://www.androidguys.com/wp-content/uploads/2016/05/Poly-Lakeside.jpg
+    http://timmatic.com/simple-design-wallpaper-android/simple-design-wallpaper-android-for-hd-wallpaper-desktop/
+    http://wallpapercave.com/wp/x7SmuIj.png
+    https://images.alphacoders.com/238/238683.jpg
+    http://i.imgur.com/SvnuN4M.png
+    https://images8.alphacoders.com/700/700862.jpg
+    http://www.wallpapers-web.com/data/out/171/5299984-rocket-wallpapers.jpg
+    */
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+.body-paragraph {
+    font-family:arial;
+    font-size:16px;
+}
+
+#tar {
+    opacity: 0;
+    transition: all .2s ease-in-out;
+}
+
+#master {
+    display:flex;
+    flex-flow:column;
+    justify-content:flex-center;
+    margin:auto;
+    margin-top:5vh;
+    width:35vmax;
+    max-width:500px;
+    min-height:calc(20vmin + 175px);
+    min-width:calc(10vmin + 175px);
+    padding-left:1vmin;
+    padding-right:1vmin;
+    padding-top:1vmin;
+    padding-bottom:calc(2em + 1vmax);
+    background-color:white;
+    border-radius:10px;
+    opacity:0;
+    transition: all .2s ease-in-out;
+    -moz-box-shadow: 0px -2px 2px rgba(34,34,34,0.6);
+    -webkit-box-shadow: 0px -2px 2px rgba(34,34,34,0.6);
+    box-shadow: 0px -2px 2px rgba(34,34,34,0.6);
+}
+
+#master:hover {
+    border-radius:5px;
+}
+
+#head {
+    margin:auto;
+    max-height:calc(5vmin + 75px);
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    flex-flow:column;
+    flex:1 0 20%;
+    padding-bottom:calc(2vmin + 2vmax + 25px);
+}
+
+#view {
+    margin:auto;
+    width:80%;
+    flex:0 0 20%;
+}
+
+.authForm {
+    display:flex;
+    flex-flow:column;
+    height:50%;
+    max-height:500px;
+}
+
+.authInput {
+    background-color:#f9fbff;
+    width:calc(10vw + 10vmin + 65px);
+    max-width:80%;
+    border:1px solid rgba(0, 0, 0, 0.3);
+    outline:none;
+    padding-left:calc(5px + 1vmin);
+    padding-top:1vh;
+    padding-bottom:1vh;
+    font-size:16px;
+    font-family:helvetica;
+    transition: all .2s ease-in-out;
+    color:black;
+    text-align:left;
+    border-radius:3px;
+    margin-bottom:1vh;
+    margin-top:1vh;
+    flex:2 1 33%;
+}
+
+.authInput:hover {
+    background-color:white;
+    -webkit-box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.authInput:focus {
+    background-color:white;
+    border-color:rgba(0, 0, 0, 0.75);
+    border-radius:6px;
+}
+
+.authInput::-webkit-.authInput-placeholder {
+    color: black;
+    transition: all .2s ease-in-out;
+}
+
+/* Firefox < 19 */
+.authInput:-moz-placeholder {
+    color: black;
+    transition: all .2s ease-in-out;
+}
+
+/* Firefox > 19 */
+.authInput::-moz-placeholder {
+    color: black;
+    transition: all .2s ease-in-out;
+}
+
+.authInput:focus::-webkit-.authInput-placeholder {
+    color: white;
+    transition: all .2s ease-in-out;
+}
+
+/* Firefox < 19 */
+.authInput:focus::-moz-placeholder {
+    color: white;
+    transition: all .2s ease-in-out;
+}
+
+/* Firefox > 19 */
+.authInput:focus::-moz-placeholder {
+    color: white;
+    transition: all .2s ease-in-out;
+}
+
+/* Internet Explorer 10 */
+.authInput:focus:-ms-.authInput-placeholder {
+    color: white;
+    transition: all .2s ease-in-out;
+}
+
+/* Internet Explorer 10 */
+.authInput:-ms-.authInput-placeholder {
+    color: black;
+    transition: all .2s ease-in-out;
+}
+
+.authInput.formInvalid::-webkit-.authInput-placeholder {
+   border-bottom:3px solid #ff2626;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version */
+}
+
+
+
+
+
+.red {
+    color:#ff0000;
+}
+
+.blue {
+    color:#0083ff;
+}
+
+.green {
+    color:#00ff00;
+}
+
+.subtitle {
+    font-family:sans-serif;
+	font-size:30px;
+	margin:auto;
+	width:50%;
+	padding-top:5%;
+	text-align:center;
+}
+
+.title {
+    height:calc(15px + 2vmin);
+    white-space:nowrap;
+    font-family:sans-serif;
+	font-size:calc(2em + 1vmin);;
+	margin:auto;
+	width:50%;
+	padding-top:calc(3vmin + 2vmax);
+	text-align:center;
+	flex:1 1 5%;
+}
+
+.menu {
+    margin:auto;
+    margin-top:50px;
+    width:50%;
+    max-height:30px;
+    padding-bottom:0.5vh;
+    border-bottom:1px solid transparent;
+    align-items:center;
+    white-space:nowrap;
+    display:flex;
+    flex-flow:row;
+    transition:all .1s ease-in-out;
+    flex:0 0 20%;
+}
+
+.menu:hover {
+}
+
+.menuOption {
+    color:black;
+	font-family:sans-serif;
+	font-size:1.5em;
+	text-align:center;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+    flex:1 3 33%;
+}
+
+.menuOption:hover {
+    color:#66ccff;
+}
+
+.menuOption:active {
+    color:#2253a3;
+}
+
+.button1 {
+    color:white;
+    border-radius:10px;
+    background-color:#1c84b2;
+    padding:2px;
+    margin-top:20px;
+    font-size:20px;
+    width:155px;
+    border:none;
+    outline:none;
+    transition: all .2s ease-in-out;
+}
+
+.button1:hover {
+    margin-top:23px;
+    background-color:#125572;
+}
+
+.button2 {
+    color: #fff;
+    border: 0;
+    background:rgb(48, 133, 214);
+    box-shadow: none;
+    font-size: 1em;
+    font-weight: 500;
+    border-radius: 6px;
+    width:calc(10vw + 10vmin + 75px);
+    max-width:85%;
+    min-height:20px;
+    height:4em;
+    max-height:4vmin;
+    cursor: pointer;
+    text-align:center;
+    outline:none;
+    transition: all .2s ease-in-out;
+    margin-top:1vh;
+    flex:1 0 33%;
+}
+
+.button2:hover {
+    -webkit-filter:brightness(90%);
+    filter: brightness(90%);
+    width:calc(10vw + 10vmin + 85px);
+    border-radius:8px;
+}
+
+.button2:active {
+    -webkit-filter:brightness(80%);
+    filter: brightness(70%);
+    width:calc(10vw + 10vmin + 90px);
+    border-radius:10px;
+}
+
+
+

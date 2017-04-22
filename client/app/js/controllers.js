@@ -1,0 +1,112 @@
+/*global app*/
+
+
+app.controller('CalendarCtrl',
+  function($rootScope, $scope, $compile, $timeout, uiCalendarConfig) {
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+
+    $scope.changeTo = 'Hungarian';
+    
+    
+    /* event source that calls a function on every view switch */
+    $scope.eventsF = function (start, end, timezone, callback) {
+      var s = new Date(start).getTime() / 1000;
+      var e = new Date(end).getTime() / 1000;
+      var m = new Date(start).getMonth();
+      var events = [{title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed']}];
+      callback(events);
+    };
+    
+    $scope.alertOnEventClick = function( date, jsEvent, view){
+        console.log(date)
+        $scope.alertMessage = (date.title + ' was clicked ');
+    };
+    
+     $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
+       $scope.alertMessage = ('Event Dropped to make dayDelta ' + delta);
+    };
+    
+    $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
+       $scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
+    };
+    
+    $scope.addRemoveEventSource = function(sources,source) {
+      var canAdd = 0;
+      angular.forEach(sources,function(value, key){
+        if(sources[key] === source){
+          sources.splice(key,1);
+          canAdd = 1;
+        }
+      });
+      if(canAdd === 0){
+        sources.push(source);
+      }
+    };
+    
+    $scope.addEvent = function(opt) {
+      $scope.events.push(opt);
+    };
+    
+    $scope.addEventCustom = function(cal) {
+      uiCalendarConfig.calendars.myCalendar.fullCalendar('removeEvents');
+      uiCalendarConfig.calendars.myCalendar.fullCalendar('addEventSource', cal);
+    }
+    
+    $scope.remove = function(index) {
+      $scope.events.splice(index,1);
+    };
+    
+    $scope.changeView = function(view,calendar) {
+      uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
+    };
+    
+    $scope.renderCalendar = function(calendar) {
+      $timeout(function() {
+        if(uiCalendarConfig.calendars[calendar]){
+          uiCalendarConfig.calendars[calendar].fullCalendar('render');
+        }
+      });
+    };
+     
+    $scope.eventRender = function( event, element, view ) {
+        element.attr({'tooltip': event.title,
+                      'tooltip-append-to-body': true});
+        $compile(element)($scope);
+    };
+    
+    $scope.uiConfig = {
+      calendar:{
+        height: "100%",
+        editable: false,
+        header:{
+          left: 'title',
+          center: '',
+          right: 'today prev,next'
+        },
+        eventClick: $scope.alertOnEventClick,
+        eventDrop: $scope.alertOnDrop,
+        eventResize: $scope.alertOnResize,
+        eventRender: $scope.eventRender
+      }
+    };
+
+    $scope.changeLang = function() {
+      if($scope.changeTo === 'Hungarian'){
+        $scope.uiConfig.calendar.dayNames = ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"];
+        $scope.uiConfig.calendar.dayNamesShort = ["Vas", "Hét", "Kedd", "Sze", "Csüt", "Pén", "Szo"];
+        $scope.changeTo= 'English';
+      } else {
+        $scope.uiConfig.calendar.dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        $scope.uiConfig.calendar.dayNamesShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        $scope.changeTo = 'Hungarian';
+      }
+    };
+    
+    $scope.events = [];
+    $scope.eventSources = [$scope.events];
+    
+    init($scope)
+});

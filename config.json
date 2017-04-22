@@ -1,0 +1,8 @@
+{
+    name: "SERVER",
+    script    : "server.js",    // Script to be run
+    exec_mode : "cluster",  //allow cluster
+    instances : 3,  //scale instances
+    max_memory_restart : "300M", //Restart if memory reaches X mb.
+    env: {PORT: 1337, NODE_ENV: "production"}
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head><!--APP!-->
+	<title>clubs</title>
+	<meta http-equiv="cache-control" content="private, max-age=86400" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+</head>
+
+<body>
+	
+	<!--ASSETS!--> <!--avoid render blocking!-->
+	<link rel="stylesheet" type="text/css" href="theme.css"> 
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.css"/>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"></script>
+	
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-calendar/1.0.0/calendar.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/gcal.min.js"></script>
+	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.css">
+	<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.js"></script>
+	
+	<script src="https://cdn.jsdelivr.net/sweetalert2/2.2.0/sweetalert2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/2.2.0/sweetalert2.min.css">
+    <!--END ASSETS!-->
+    
+	<div class="ui sidebar" id="sidebar">
+		<div class="ui inverted segment pushable">
+			<!--<div id="topMenuContainer">
+				<div id="topMenu">
+					<div class="ui circular icon button topMenuItem" data-tooltip="Logout" data-position="bottom left" data-variation="large" onclick="logOut()">
+					  <i class="sign out icon compact large"></i>
+					</div>
+					<div class="ui circular icon button topMenuItem" data-tooltip="Help" data-position="bottom center" data-variation="large" tabindex="0" onclick="openHelp()">
+					  <i class="help icon compact large"></i>
+					</div>
+					<div class="ui circular icon button topMenuItem" data-tooltip="Feedback" data-position="bottom right" data-variation="large" tabindex="0" onclick="openFeedback()">
+					  <i class="announcement icon compact large"></i>
+					</div>
+				</div>
+			</div>!-->
+			<div id="clubMenuContainer">
+				<div id="clubMenu">
+					<div class="ui circular icon button clubMenuItem" data-tooltip="Join Club" data-position="bottom left" data-variation="large" onclick="joinClick()">
+					  <i class="add icon compact large"></i>
+					</div>
+					<div class="ui circular icon button clubMenuItem" data-tooltip="Leave Club" data-position="bottom center" data-variation="large" tabindex="0" onclick="leaveClick()">
+					  <i class="remove icon compact large"></i>
+					</div>
+					<div class="ui circular icon button clubMenuItem" data-tooltip="Create Club" data-position="bottom right" data-variation="large" tabindex="0" onclick="createClick()">
+					  <i class="wizard icon compact large"></i>
+					</div>
+				</div>
+			</div>
+			<div class="ui inverted segment fancy-scroll" id="clubBox">
+				<div class="ui big inverted divided relaxed selection list" id="clubList">
+					<!--added w/ js!-->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="dimmed pusher">
+		<div ng-app="_app">
+			<h2 class="ui block header inverted">
+				<button id="sidebarBtn" class="material-icons" onclick="toggleSidebar()">view_headline</button>
+				<p id="topbarTitle">{{title}}</p>
+				<div id="topMenu">
+					<div class="ui animated blue button topMenuItem" tabindex="0" onclick="goToCalendar()">
+					  <div class="visible content"><i class="calendar icon compact large"></i></div>
+					  <div class="hidden content">
+					  	Agenda
+					  </div>
+					</div>
+					<div class="ui animated button topMenuItem" tabindex="0" onclick="logOut()">
+					  <div class="visible content"><i class="sign out icon compact large"></i></div>
+					  <div class="hidden content">
+					  	Sign Out
+					  </div>
+					</div>
+					<div class="ui animated button topMenuItem" tabindex="0" onclick="openHelp()">
+					  <div class="visible content"><i class="help icon compact large"></i></div>
+					  <div class="hidden content">
+					  	Help
+					  </div>
+					</div>
+					<div class="ui animated button topMenuItem" tabindex="0" onclick="openFeedback()">
+					  <div class="visible content"><i class="announcement icon compact large"></i></div>
+					  <div class="hidden content">
+					  	Feedback
+					  </div>
+					</div>
+				</div>
+				
+			</h2>
+			<section class="ui segment" id="directives-calendar" ng-controller="CalendarCtrl">
+				<div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar" id="calendar"></div>
+			</section>
+			<div id="club-container">hello</div>
+		</div>
+	</div>
+	<script src="./js/init.js"></script>
+	<script src="./js/index.js"></script>
+	<script src="./js/controllers.js"></script>
+	<script src="./js/routes.js"></script>
+
+</body>
+
+</html>
