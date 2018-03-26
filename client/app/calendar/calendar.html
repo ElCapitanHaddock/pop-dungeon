@@ -1,0 +1,58 @@
+<center id="calendar-container" class="ui stackable doubling two column centered grid fancy-scroll" style="background:none;border:none;" ng-init="checkClub()">
+    <div class="column six wide" id="clubSegment"style="background:linear-gradient(black,transparent);border-top-right-radius:20px">
+        <h2 class="ui header inverted left aligned">
+            <div class="ui menu big inverted" style="background:linear-gradient(to right,#1b1c1d,black,transparent)!important">
+                 <div class="item ui button clubNavBtn">Join A Guild</div>
+                  <div class="item ui button clubNavBtn">Create Your Own</div>
+            </div>
+        </h2>
+        <div class="ui basic segment fancy-scroll" id="homePageClubSeg"> <!-- dynamic club list!-->
+				<div class="ui cards stackable fancy-scroll" style="border-top:none;max-height:70vh;" id="homePageClubBox">
+					<div ng-repeat="c in clubs" class='ui card homeClubListItem' ng-class='c.color' ng-click="c.open(false)" style="overflow:hidden;padding-top:1px;display:inline-block;margin-left:10px;max-width:500px;min-width:200px;width:30%">
+							<img style="object-fit:cover;background-repeat:none;background-size:cover;" ng-src='https://placeit.net/uploads/background/image/914/default_b7618e53ec04ea3580899723dfafa527.png' class="ui image fluid" ng-style="{'background-image':'url('+c.background+')'}"></img>
+							<div class='content' style="height:fit-content!important">
+							    <h1 class='ui header massive'>{{c.name}}</h1>
+                              <div class="meta">
+                                <i class="user icon"></i><a>{{c.members}} members</a>
+                              </div>
+                              <div class="description">
+                                {{c.short}}
+                              </div>
+						    </div>
+					</div>
+				</div>
+				<div class="gradient"></div>
+			</div>
+			
+    </div>
+    <div class="column nine wide" id="homePageSegment">
+        <h1 class="ui header left aligned inverted">
+        &emsp;
+            <img class="ui image" src="jeff.jpg"></img>
+            <div class="content">
+                Pop Dungeon
+            </div>
+        </h1>
+        <div id="newsDiv" class="ui segment basic fancy-scroll">
+            <h1 class="ui icon message compact">
+                <i class="inbox icon"></i>
+                  <div class="content">
+                    <div class="header">
+                        We got 2nd place in Systems Software!
+                    </div>
+                  </div>
+            </h1>
+            <img class="ui image fluid massive" src="csrsef board png.PNG"></img>
+        </div>
+    </div>
+</center>
+
+<script>
+//var test = $('.shape').shape().height("325px");
+$('.dimming')
+    .dimmer({
+        on: 'hover',
+    });
+$('.ui.dropdown').dropdown();
+
+</script>

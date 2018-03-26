@@ -6,6 +6,134 @@ var bcrypt = require('bcrypt')
 var random = require('random-gen')
 var should = require('should')
 
+var heroTemplates = [
+    {
+        //clubid:"qiob62", //Spanish
+        name:"Bilbo",
+        level: 1,
+        kills: 0,
+        xp: 0,
+        cl: "Knight",
+        money:"1590",
+        avatar:"http://static.wixstatic.com/media/5a7184_7ae5301c8e764f34911caa0ca8a66e94.png",
+        current: {
+            weapon: "Sting",
+            offHand: "Ancient Ring",
+            armor: "Mithryl Mail",
+            ability: "Sword Whirl"
+        },
+        weapons: [
+            "Sting",
+            "Barrow-blade",
+            "Halfling Rapier",
+        ],
+        offHands: [
+            "Smelly Cheese",
+            "Pale Ale",
+            "Ancient Ring",
+        ],
+        armor: [
+            "Mithryl Mail",
+            "Fur Coat",
+            "Baggins Booties",
+        ],
+        abilities: [
+            "Detect Orcs",
+            "Vanish",
+            "Hearty Breakfast",
+            "Sword Whirl",
+            "Shield Warrior",
+        ],
+        achievements: [
+        ]
+    },
+    {
+        //clubid:"109hf", //Algebra
+        level: 1,
+        kills: 0,
+        xp: 0,
+        cl:"Wizard",
+        money:"420",
+        avatar:"https://vignette2.wikia.nocookie.net/realmofthemadgod/images/8/8f/Wizard_0.png/revision/latest?cb=20111104231251",
+        current: {
+            weapon: "Elder Wand",
+            offHand: "Ancient Relic",
+            armor: "Simple Robes",
+            ability: "Tornado"
+        },
+        weapons: [
+            "Elder Wand",
+            "Simple Staff",
+            "Fire Staff",
+        ],
+        offHands: [
+            "Ancient Relic",
+            "Dusty Tome",
+            "Fireworks",
+        ],
+        armor: [
+            "Simple Robes",
+            "Gray Robes",
+            "White Robes"
+        ],
+        items: [
+            "Map to Isengard",
+            "HP Potion",
+            "Mana Potion",
+            "Pipeweed"
+        ],
+        abilities: [
+            "Fireball",
+            "Tornado",
+            "Anti-pass",
+            "Enlighten",
+            "Soul-sucker"
+        ],
+        achievements: [
+        ]
+    },
+    {
+        //clubid:"io3gb", //Biology
+        level: 1,
+        kills: 0,
+        xp: 0,
+        cl:"Thief",
+        money:"230",
+        avatar:"https://vignette1.wikia.nocookie.net/realmofthemadgod/images/2/29/Archer.png/revision/latest?cb=20111104230908",
+        current: {
+            weapon: "Elvish Bow",
+            offHand: "Quiver",
+            armor: "Elvish Tunic",
+            ability: "Arrow Rain"
+        },
+        weapons: [
+            "Elvish Bow",
+            "Liverroot Bow",
+            "Elf-Steel Dagger",
+        ],
+        offHands: [
+            "Quiver",
+            "Wicked Elixir",
+            "Doubleshot Espresso",
+        ],
+        armor: [
+            "Elvish Tunic",
+            "Rivendale Robes",
+            "Terrasteel Armor"
+        ],
+        abilities: [
+            "Steady Shot",
+            "Arrow Rain",
+            "Focus",
+            "Serrated Shot",
+            "Enrage",
+        ],
+        achievements: [
+        ]
+    },
+]
+    
+
 var Login = function(app, api, store) {
     var self = this
     var login = express()
@@ -15,12 +143,13 @@ var Login = function(app, api, store) {
     _____________________________________________
     ________________L O G I N ___________________
     */
-    
+
     login.post('/authenticate', function(req, res) {
         var data = req.body
         if (sanitary(data) && !empty(data)) {
-            api.authenticate({email: data.u, password: data.p}, function(status, token) {
-                if (status == 200) {
+            api.auth.authenticate({email: data.u, password: data.p}, 
+            function(error, token) {
+                if (!error) {
                     console.log('User ' + data.u + ' logged with ' + token + ' at ' + displayTime())
                     //add session id to database, paired with token
                     updateSession(req.session.id, token)
@@ -29,33 +158,21 @@ var Login = function(app, api, store) {
                     res.end()
                 }
                 else {
-                    switch(status) {
-                        case 404: //not found 
-                            res.status(401).send('incorrect')
-                            break;
-                        case 401: //unauthorized
-                            res.status(401).send('incorrect')
-                            break;
-                        case 400: //error
-                            res.status(400).send('error')
-                            break;
-                        default:
-                            res.status(503).send('error')
-                            break;
-                    }
+                    res.status(400).send({msg:error})
+                    res.end()
                 }
             })
         }
         else if (data.u === undefined || empty(data)) {
-            res.status(400).send('empty')
+            res.status(400).send({msg:'empty'})
             res.end()
         }
         else if (!sanitary(data)) {
-            res.status(400).send('illegal')
+            res.status(400).send({msg:'illegal'})
             res.end()
         }
         else {
-            res.status(400).send('error')
+            res.status(400).send({msg:'error'})
             res.end()
         }
     })
@@ -68,42 +185,42 @@ var Login = function(app, api, store) {
         var data = req.body
         if (sanitary(data) && !empty(data)) {
             var username = data.u.substring(0, data.u.indexOf("@")) //the area before the @ is the username
-            api.register({email: data.u, name: username, password: data.p}, function(status, info) {
-                if (status == 200) {
-                    console.log('User ' + data.u + ' registered at ' + displayTime())
-                    console.log(info)
-                    req.session.logged = true //"change" the session to bypass saveUninitialized
-                    res.send('registered')
-                    res.end()
+            console.log(data.cl)
+            if (data.cl == undefined || data.cl == null || data.cl < 0 || data.cl > 2) { //0: knight, 1: wizard, 2: thief
+                res.status(400).send({msg: "You must pick a hero!"})
+            }
+            else {
+                if (data.n == undefined) { //nickname
+                    res.status(400).send({msg: "You must choose a nickname!"})
                 }
                 else {
-                    switch(status) {
-                        case 411: //length too short
-                            res.status(411).send('short')
-                            break;
-                        case 409: //user already exists, conflict
-                            res.status(409).send('already')
-                            break;
-                        case 400: //error
-                            res.status(400).send('error')
-                            break;
-                        default:
-                            res.status(503).send('error')
-                            break;
-                    }
+                    api.auth.register({email: data.u, name: username, password: data.p, nick: data.n, hero: heroTemplates[data.cl]},
+                    function(error, info) {
+                        if (!error) {
+                            console.log('User ' + data.u + ' registered at ' + displayTime())
+                            console.log(info)
+                            req.session.logged = false //"change" the session to bypass saveUninitialized
+                            res.send('registered')
+                            res.end()
+                        }
+                        else {
+                            console.log(error)
+                            res.status(400).send({msg: error})
+                        }
+                    })
                 }
-            })
+            }
         }
         else if (data.u === undefined || empty(data)) {
-            res.status(400).send('empty')
+            res.status(400).send({msg:'empty'})
             res.end()
         }
         else if (!sanitary(data)) {
-            res.status(400).send('illegal')
+            res.status(400).send({msg:'illegal'})
             res.end()
         }
         else {
-            res.status(400).send('error')
+            res.status(400).send({msg:'error'})
             res.end()
         }
     })
@@ -121,6 +238,7 @@ var Login = function(app, api, store) {
             
     */
     function updateSession(id, token) {
+        console.log(token)
         var session = {token: token, id: id}
         store.loadDatabase(function (err) {})
         store.find({id: id}, function(err, sessions) {

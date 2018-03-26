@@ -58,7 +58,7 @@ var Login = require('./login.js')
 var User = require('./user.js')
 
 
-var api = require('./api-request.js')
+var api = require('./new-api-request.js')
 var API = new api()
 
 var login = new Login(app, API, SessionStore)

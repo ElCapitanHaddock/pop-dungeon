@@ -1,0 +1,20 @@
+<div class="ui small modal" controller="resultsController" id="resultsModal">
+    <center>
+        <h2 class="ui block header">{{mref.name}}</h2>
+        <h1>Results</h1>
+        <img class="ui image medium" ng-show="mref.name=='Victory!'" src="http://www.myiconfinder.com/uploads/iconsets/256-256-5d41edabc60f4fd2cf3c9f5d35d84045-trophy.png"></img>
+        <img class="ui image medium" ng-show="mref.name=='Defeat!'" src="https://pre00.deviantart.net/6c20/th/pre/i/2013/048/3/8/skull_by_robot_panda22-d5vb2v7.png"></img>
+        <h2>Time: {{60 - (mref.timeLeft / 4)}} seconds</h2>
+        <h3>Answered Correctly: {{mref.res.correct}}</h3>
+        <h3>Answered Incorrectly: {{mref.res.incorrect}}</h3>
+        <br>
+        <div class="ui ok button green" onclick="$('.modal').modal('hide')">OK</div>
+        <!--<p>Most missed question: TBD</p>
+        TBD:
+        two columns, one for results, i.e. most missed etc
+        the other for rewards: xp, money gained, etc. with xp bar transition
+        !-->
+        <br>
+        <br>
+    </cemter>
+</div>

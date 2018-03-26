@@ -1,0 +1,53 @@
+
+<div class="ui three column centered stackable grid" ng-controller="homeCtrl" ng-init="init()">
+    <div class="ui column five wide"> <!--boss profile!-->
+        <div class="ui divided items segment raised">
+            <div class="ui item centered">
+                <div class="ui image">
+                    <img ng-src="{{boss.avatar}}"></img>
+                </div>
+                <div class="content middle aligned">
+                    <h1>{{boss.name}}</h1>
+                    <i class="star icon yellow"></i> {{boss.level}}
+                    <div></div>
+                    <i class="hand lizard sign icon blue"></i> {{boss.cl}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui column five wide"> <!--player profile!-->
+        <div class="ui divided items segment raised">
+            <div class="ui item centered">
+                <div class="ui image">
+                    <img ng-src="{{hero.avatar}}"></img>
+                </div>
+                <div class="content middle aligned">
+                    <h1>{{hero.name}}</h1>
+                    <i class="star icon yellow"></i> {{hero.level}}
+                    <div></div>
+                    <i class="book icon brown"></i> {{hero.cl}}
+                    <div></div>
+                    <i class="diamond icon blue"></i> {{hero.money}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui column four wide">
+        <div class="ui segment raised">
+            <a class="ui red ribbon label">Upcoming</a>
+            <div class="event-scroll fancy-scroll">
+                <div ng-repeat="e in posts | filter: {month: thisMonth}" ng-click="modals.event(e)">
+                    <div class="alert alert-info ui message">
+                        <div>
+                            <b>{{e.title}}</b>
+                            <div></div>
+                            {{e.monthName}} {{e.day}}
+                            <div></div>
+                            {{e.end | date:"MMM dd"}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

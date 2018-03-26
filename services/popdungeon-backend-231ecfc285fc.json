@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "popdungeon-backend",
+  "private_key_id": "231ecfc285fcb35575e0af20d3cde7470ad4711f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDZ66y6MvjIvGTm\nk2PRz8q4Ufe8MbhU9BK1LUJ9zV1h5gNGdYv8yC4h8yJTieAsMUd2VWQh7L1/6nHi\naX2mmQZfd0ZVHtBo9BO0E5xglA3vIz5jxNtQSkYMCQvSfbPUIy7JhUNtDNfMgtyG\nHLyq/tdN+V47V833qQJa4jQSe/E/ZbiN+0AvEJXHxEcTmmgyh/Hktk+LD/gQDnTc\ntguv/Nz2mBcG4KdCJPCzHDCZFWxM5mRUdWlMrNqQ6JbONRf5p63LIr2bo9+T9DSv\neSkws+Heop/cPDpYxmwo79OG/h8jJcLyPzItNcoL6i6nZ38o+r/Xp+LD5XmH1SQW\nTKZSocaJAgMBAAECggEAD55Fdd7bV7+w15muqMXkuIsfXzyNAoGvqY6B2nRSggaz\nK2SXUNmj/MjpJ+WUzHYHsiJyl7/Y4QcTfG+lEsCa5VKuFsGrnCoKE3joVz+lNANp\noErmkP2RwaEQWNirf8O5wbWsXG90M/MZDP+YQgUbtzntGAG2AE77nTnjE4QQiUOG\nJ9OEPvR6YkZyIbIKFluEwGuUgRL4n95ifkm3+EJHpMDhg2UysZCfkzV5loJBkWa6\n+dT+xXL67auRY4HQzInD3G4MiOfwJ2bh6wepZVrTVz+VZZQKmTwvORZimX33wXbR\nAWU3ZLg/ZBTykrYQ9SMvSPbBexfLGEFwjY7ude5K9QKBgQD7QsMLHYlMJHGVx26q\nX/rn23EO34uB2YG5FnsnStcDzXoddayvsszkQ37CPz61il+G0seyB5vJaPLWUoHX\n/sNHDuSewbyPjg3cMgHKvYp6FoOWS6UM3nuvAe0u99mDYJqGHq61rj2p8hRZ4eyd\nQAgJICBe03ulEPbcQOdxZVTzFwKBgQDeB+0nJQBD+650B1MMxob7woH5EnKL9+zp\nTVTEWUCrRHLuKTos7mEyiusN4bkPZnSIH9j1UwhvWypmARyyQNfYCUKXd++l9J7S\nCUn/1Pt532XpEoBixDWtATTpWTVvsrT2EfVGDRPqc78fS6GY+ViAiG/IS0E3Dq8l\nY0tfEK+XXwKBgAYPtT7WZpKEqozPc9b+W8IuJAsUz3vBcISziyMGhitcUJ7XUOQo\nLxMuoacz+WJNxUIuYYzk7BguxPTwpps8VR+ot1ExIUhhR+pQ9oQakHWjh2cfygqG\nb3toU313kzK9KN0lbleJrYklAuKsNZYRjmAR+1XuSiRQRXRIyIyOwj7fAoGAGWi2\nzyAA48bNtCGSc4fUssMTtLlTuojo59odtUqxh+gRbwfwzGuLXAlh1PjcANMsytc6\nMPkLohLAy2OdMRkSmnqU0Fi9aDSSaF7/xPNOxCe4te+UGblymxXkREAdSWceJnrv\notCkUtRkLuSs3aDLbAoxIK7cC7z2dkTiv0JdlekCgYB7WiJutFbi+gl6lI5rOFoy\nKeoEemCuDZL+Ll/dGFmNCjT0PC1xgOKvo34ytVCHcSR+LjjASnuK6WbbL65NASC8\nUCvKhCcngHoSUh5v3B93/GuxPKWqu2Nhg0Xk9xIse2CUCIi3s6vCHEoPFGBkXjiY\no7FgYqluBuUlkhoyCntyOw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "popdungeon-backend@appspot.gserviceaccount.com",
+  "client_id": "114069277276910311351",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/popdungeon-backend%40appspot.gserviceaccount.com"
+}

@@ -1,28 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Didact+Gothic|Economica|Freckle+Face|Press+Start+2P|Shadows+Into+Light|VT323');
+
 
 * {
     outline:none;
 }
 
+
+
+
+html {
+    position:absolute;
+    left:0;
+    right:0;
+    background-color:black;/*#1e2811;*/
+    background-size:cover!important;
+    background-position:center center;
+    background-repeat:no-repeat!important;
+    image-rendering: crisp-edges;
+    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated; /* Chrome */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+   /* background-image: url("https://media.cmcdn.net/7c3c1e3a2f74842c788c/21009917/960x640.png");*/
+    background-image: url("https://media.cmcdn.net/7c3c1e3a2f74842c788c/21009917/960x640.png"), linear-gradient(transparent, black);/*http://oi68.tinypic.com/mu9b4o.jpg*/
+    transition: all .2s ease-in-out
+}
+
+html.ios {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+html.ios,
+html.ios body {
+  height: initial !important;
+}
+
+#body { /*not mistake, #id needed to override semanticUI*/
+    background:transparent!important;
+}
+
+#pusher {
+    background:transparent!important;
+}
+
+
 input {
     color:black;
     background-color:transparent;
-    width:150px;
+    width:75%;
+    max-width:250px;
     border:2px solid transparent;
+    border-bottom:1px solid transparent;
     outline:none;
     padding:6px;
     font-size:16px;
     font-family:helvetica;
     transition: all .2s ease-in-out;
     text-align:center;
-    border-bottom:1px solid black;
 }
 
 input:hover {
-    width:175px;
+    border-bottom:1px solid black;
+    width:80%;
 }
 
 input:focus {
-    width:200px;
+    width:90%;
     border-color:rgba(0, 0, 0, 0.05);
     background-color:white;
     color:black;
@@ -30,7 +76,7 @@ input:focus {
     -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-    text-align:left;
+    text-align:center;
 }
 
 input::-webkit-input-placeholder {
@@ -109,15 +155,38 @@ input.formInvalid::-webkit-input-placeholder {
 }
 
 .title {
-    font-family:sans-serif;
-	font-size:20px;
+}
+
+.fc-scroller {
+    max-height:fit-content!important;
+}
+
+#view-container {
+    margin-top:69px;
+    width:100%;
+    height:80%;
+}
+
+#calendar-container {
+    padding-top:13px;
+}
+
+#event-container {
+    overflow:hidden!Important;
+    min-height:calc(65vh + 50px)!Important;
+    height:calc(65vh + 50px)!Important;
+}
+
+.calendar-event-scroll {
+    overflow:auto!important;
+    height:462px!Important;
+    max-height:45vh!important;
 }
 
 .view {
     margin-top:10%;
     width:100%;
-    height:85%;
-    position:fixed;
+    height:80%;
 }
 
 .button1 {
@@ -171,29 +240,67 @@ input.formInvalid::-webkit-input-placeholder {
 }
 
 #topbarTitle {
-    float:left;
-    margin-left:2%;
+    color:white;
 }
 
+#sidebarBtn {
+    border-radius:0!important;
+    box-shadow:none!important;
+}
+
+#settingsBtn {
+    border-radius:0!important;
+    box-shadow:none!important;
+}
+
+#dashboardBtn {
+    border-radius:0!important;
+    box-shadow:none!important;
+}
+
+#heroBtn {
+    border-radius:0!important;
+    box-shadow:none!important;
+}
+
+#sidebar {
+    height:fit-content!important;
+    overflow:visible!important;
+}
+
+/*
 #topMenu {
-    border-radius:20px;
+    border-radius:5vmin;
     background-color:#545454;
-    width:calc(190px + 15%)!important;
-    margin-left:calc(85% - 190px);
+    width:calc(110px + 20vw)!important;
+    margin-left:calc(80vw - 135px);
     display:flex;
     flex-direction:row;
 }
 
 .topMenuItem {
+    text-align:center;
+    font-size:2vmin!important;
     flex:1 1 25%;
 }
+*/
 
+.ui.animated.button .visible.content {
+    position: relative;
+    margin-right: 1em!important;
+    left: auto;
+    right: 0;
+}
+
+
+/*
 #sidebarBtn {
     float:left;
     font-size:30px;
     background-color:#424242;
     border:none;
     transition: all .2s ease-in-out;
+    font-size:calc(5vmin)!important;
 }
 
 #sidebarBtn:hover {
@@ -203,88 +310,59 @@ input.formInvalid::-webkit-input-placeholder {
 #sidebarBtn:active {
     background-color:#303030;
 }
+*/
 
-#clubMenu {
-    width:100%;
-    padding-left:1%;
-    padding-right:4%;
-    padding-top:1%;
-    height:15%;
-    background: -webkit-linear-gradient(top, #545454, #343638);
-    display:inline-flex;
-    flex-direction:row;
+#clubMenuAccordion {
+    /*background-color:#42464c;*/
+    height:93px;
+}
+
+#clubMenu { /*management options styling*/
+    background-color:transparent!important;
+    height:56px!important;
+    padding-top:10px!important;
+    padding-bottom:10px!important;
+    margin-top:0!important;
 }
 
 .clubMenuItem {
-    margin-left:0%!important;
-    margin-right:2%!important;
-    padding:2%;
-    background:none!important;
-    color:white!important;
-    flex:1 1 3%;
+    margin-left:10px!Important;
+    margin-right:10px!important;
 }
 
-#sidebar {
-}
 
 #clubBox {
-    height:80%;
-    max-height:80%;
-    overflow:auto;
+    width:100%!Important;
+    padding-top:0!important;
+    max-height:90vh;
+    overflow:visible;
 }
 
 #clubList {
+    height:100%;
+    border-top:1px solid gray;
+    margin-top:0px!Important;
 }
 
 .clubBtn {
-    padding:5%!important;
-    padding-top:10%!important;
-    margin-top:5%important;
-    padding-bottom:10%!important;
+    padding:1%!important;
+    padding-top:10px!important;
+    padding-bottom:20px!important;
+    padding-left:5px!important;
+    transition:all .2s ease-in-out!important;
+    filter:brightness(0.5);
+}
+
+.clubBtn:hover {
+    filter:brightness(1);
+    transform:scale(1.1);
 }
 
 #calendarBox {
+    display:none;
     width:100%!important;
     height:70vmin!important;
-    max-height:70vmin!important;
 }
-
-#directives-calendar {
-    
-}
-
-#calendar {
-    
-}
-
-.fc-view-container {
-    height:70vh!important;
-    overflow:auto;
-}
-
-.fc-view-container::-webkit-scrollbar-track {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius:10px;
-	background-color: #F5F5F5;
-}
-
-.fc-view-container::-webkit-scrollbar {
-	width: 10px;
-	border-radius:5px;
-	background-color: #F5F5F5;
-}
-
-.fc-view-container::-webkit-scrollbar-thumb {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	border-radius:5px;
-	background-color: #7c7c7c;
-}
-
-#club-container {
-    display:none;
-}
-
-
 
 .fancy-scroll::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -304,4 +382,75 @@ input.formInvalid::-webkit-input-placeholder {
 	background-color: #7c7c7c;
 }
 
+#GAME_CONTAINER {
+    background-color:black;
+}
 
+#question {
+    background-color:black;
+}
+
+.ui.fullscreen-custom.modal {
+    transition: all .2s ease-in-out
+}
+
+#pageContainer {
+    padding-top:1vh;
+    background:none;
+    padding-bottom:1em;
+    height:auto;
+    max-height:75vh!important;
+    overflow:auto;
+    transition: all .5s ease-in-out
+}
+
+#clubInner {
+    min-width:40vw;
+    padding:0!important;
+    background-color:rgba(0, 0, 0, 0.5);
+    outline:transparent;
+    border:transparent;
+    height:auto;
+    max-height:70vh;
+    transition: all .2s ease-in-out
+}
+
+#clubCenterer{
+    margin-top:10vh;
+    transition: all .2s ease-in-out
+}
+
+.worldNavBtn {
+    display:inline-block!important;
+    transition: all .2s ease-in-out;
+}
+
+.worldNavBtn:hover {
+    transform:scale(1.5)
+}
+
+
+.ui.tabular.menu.item.inactive {
+    color:white!Important;
+}
+
+.active {
+    color:black!important;
+}
+.inactive {
+    font-weight:bold;
+    color:white!important;
+}
+
+#confirmEquipBtn {
+    background-color:slategray;
+    color:white;
+}
+
+#confirmEquipBtn:hover {
+    background-color:darkslategray;
+    color:white;
+}
+
+.equipBtn {
+}

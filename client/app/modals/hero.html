@@ -1,0 +1,80 @@
+
+<div id="heroModal" class="ui basic modal">
+    <div class="ui two column centered stackable grid">
+        <div class="six wide column"> <!--player profile!-->
+            <div class='ui image big segment basic'>
+                <img ng-src="{{hero.avatar}}" style="max-width:50vw;width:100%"></img>
+            </div>
+        </div>
+        <div class="seven wide column inverted"> <!--abilities and gear equip!-->
+            
+            <h1 style="color:white!important">Equip</h1>
+            <div class="ui dropdown button fluid red huge equipBtn">
+                <span class="text item" style="color:white!important">
+                    <img class="image" ng-src="{{assets.weapons[hero.current.weapon]}}"></img>
+                    {{hero.current.weapon}}
+                </span>
+                <div class="menu">
+                    <div class="item" ng-repeat="i in hero.weapons">
+                        <img class="image" ng-src="{{assets.weapons[i]}}"></img>
+                        {{i}} 
+                    </div>
+                </div>
+            </div>
+            <div class="ui dropdown button fluid green huge equipBtn">
+                <span class="text">
+                    <img class="image" ng-src="{{assets.offHands[hero.current.offHand]}}"></img>
+                    {{hero.current.offHand}}
+                </span>
+                <div class="menu">
+                    <div class="item" ng-repeat="i in hero.offHands">
+                        <img class="image" ng-src="{{assets.offHands[i]}}"></img>
+                        {{i}}
+                    </div>
+                </div>
+            </div>
+            <div class="ui dropdown button fluid blue huge equipBtn">
+                <span class="text">
+                    <img class="image" ng-src="{{assets.armor[hero.current.armor]}}"></img>
+                    {{hero.current.armor}}
+                </span>
+                <div class="menu">
+                    <div class="item" ng-repeat="i in hero.armor">
+                        <img class="image" ng-src="{{assets.armor[i]}}"></img>
+                        {{i}}
+                    </div>
+                </div>
+            </div>
+            <div class="ui dropdown button fluid orange huge equipBtn">
+                <span class="text">
+                    <img class="image" ng-src="{{assets.abilities[hero.current.ability]}}"></img>
+                    {{hero.current.ability}}
+                </span>
+                <div class="menu">
+                    <div class="item" ng-repeat="i in hero.abilities">
+                        <img class="image" ng-src="{{assets.abilities[i]}}"></img>
+                        {{i}}
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="actions">
+              <div class="ui approve button fluid left floated confirm huge" id="confirmEquipBtn" style="margin-left:0">
+                Done
+              </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<script>
+$('.ui.dropdown')
+  .dropdown({
+    showOnFocus: false,
+    /*
+    onChange: function(value, text, $selectedItem) {
+    }
+    */
+  });
+</script>

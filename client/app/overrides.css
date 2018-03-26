@@ -1,0 +1,18 @@
+
+/* Semantic UI is a dumb piece of shit - it uses !important on every single css rule it has.
+This file is to override all its dumbass non-standard colors and rules
+*/
+
+
+.cteal {
+	background-color:teal!important;
+	color:white!important;
+}
+.colive {
+	background-color:olive!important;
+	color:white!Important;
+}
+.cpink {
+	background-color:pink!important;
+	color:white!Important;
+}

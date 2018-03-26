@@ -1,0 +1,31 @@
+
+/*In order to take priority over semantic classes, use ID over class*/
+
+#clubInner {
+    margin:0!Important;
+}
+
+#pageView {
+    padding-top:1vmin!important;
+    margin-left:1vmin!Important;
+}
+
+#pageContainer {
+    border:none!important;
+}
+
+.event-scroll {
+    overflow:auto!important;
+    max-height:45vh!important;
+}
+
+.clubMenuItem {
+    transition: all .2s ease-in-out;
+}
+.clubMenuIcon:hover {
+    transform:scale(1.1)
+}
+
+body {
+    height:fit-content;
+}

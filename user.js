@@ -33,6 +33,7 @@ var User = function(app, api, store) {
                 else, redirect
     */
     
+    
     user.use(function(req, res, next) {
         sessionCache.get(req.session.id, function(err, val) { //check session CACHE for pair
             if (!err) {
@@ -61,7 +62,7 @@ var User = function(app, api, store) {
                                     numSessions++
                                 }
                                 sessionCache.set(req.session.id, sessions[0].token) //set token/id pair into cache
-                                req.token = sessions[0].token //PASS TOKEN
+                                req.token = sessions[0].id //PASS TOKEN
                                 next()
                             }
                         }
@@ -76,6 +77,41 @@ var User = function(app, api, store) {
             else console.error(err)
         })
     })
+    
+    
+    var exampleGuilds = [
+        {
+            name: "Math Wizards",
+            cl: "Algebra",
+            id: "109hf",
+            short: "Mr. Travis's classroom",//"http://www.neatorama.com/wp-content/uploads/2011/05/gandalf.jpg",
+            members: 20,
+            background: "https://i.redd.it/qmfjuz883g7z.png",
+            world: "Open Plain",
+            color: "pink"
+        },
+        {
+            name: "Los Caballeros",
+            cl: "Spanish",
+            id: "qiob62",
+            short: "Clase de Senora Robertson",
+            background: "bg_game.png",//"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Tv%C3%A5handssv%C3%A4rd%2C_Italien%2C_ca_1623_-_Skoklosters_slott_-_67303.tif/lossy-page1-220px-Tv%C3%A5handssv%C3%A4rd%2C_Italien%2C_ca_1623_-_Skoklosters_slott_-_67303.tif.jpg",
+            world: "Green Hills",
+            members: 21,
+            color: "blue"
+        },
+        {
+            name: "Mr. Ivy League",
+            cl: "History",
+            id: "io3gb",
+            short: "Mr. Ivy's Class",
+            background: "https://steamuserimages-a.akamaihd.net/ugc/100603690261120555/3288949BD5D35B3BCFA9DE0B65FAADE54BBD701C/",//"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/220px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg",
+            world: "Silent Forest",
+            members: 16,
+            color: "teal"
+        },
+    ]
+    
     
     
     //d a s h b o a r d
@@ -93,41 +129,8 @@ var User = function(app, api, store) {
                 console.log("body: " + status)
             }
         })*/
-        //testing dashboard
         var td = {}
-        td.clubs = [    //temporary, until backend fully implemented
-            {
-                name: "Club 1",
-                id: "club1id",
-                short: "This is Club 1, where we do Club 1 stuff",
-                icon: "https://semantic-ui.com/images/wireframe/image.png",
-                color: "red",
-                members: 5
-            },
-            {
-                name: "Club 2",
-                id: "club2id",
-                short: "This is Club 2, where we do Club 2 stuff",
-                icon: "https://semantic-ui.com/images/wireframe/image.png",
-                color: "blue",
-                members: 7
-            },
-            {
-                name: "Club 3",
-                id: "club3id",
-                short: "This is Club 3, where we do Club 3 stuff",
-                icon: "https://semantic-ui.com/images/wireframe/image.png",
-                color: "gray",
-                members: 4
-            },{
-                name: "Club 4",
-                id: "club4id",
-                short: "This is Club 4, where we do Club 4 stuff",
-                icon: "https://semantic-ui.com/images/wireframe/image.png",
-                color: "orange",
-                members: 4
-            },
-        ]
+        td.clubs = exampleGuilds
         res.send(td)
     })
     
@@ -148,31 +151,17 @@ var User = function(app, api, store) {
     var y = date.getFullYear();
     
     //EXAMPLE ARCHITECTURE
-    var exampleClubs = [
-        [
-          {title: 'Club 1 Meeting',start: new Date(y, m, 20), id: "32o3bg", clubid: "clubid1"},
-          {title: 'Club 1 Orientation',start: new Date(y, m, 2), id: "12oi3b", clubid: "clubid1"},
-          {title: 'Club 1 Event',start: new Date(y, m, 3), id: "1o3in", clubid: "clubid1"},
-        ],
-        [
-          {title: 'Club 2 Meeting',start: new Date(y, m, 15), id: "1ionf", clubid: "clubid2"},
-          {title: 'Club 2 Orientation',start: new Date(y, m, 6), id: "13iobg", clubid: "clubid2"},
-          {title: 'Club 2 Event',start: new Date(y, m, 7), id: "13ogic", clubid: "clubid2"},
-        ],
-        [
-          {title: 'Club 3 Meeting',start: new Date(y, m, 6), id: "13uibg", clubid: "clubid3"},
-          {title: 'Club 3 Orientation',start: new Date(y, m, 1), id: "1oi3gh", clubid: "clubid3"},
-          {title: 'Club 3 Event',start: new Date(y, m, 1), id: "aiosbv", clubid: "clubid3"},
-        ],
-        [
-          {title: 'Club 4 Meeting',start: new Date(y, m, 26), id: "12iobh", clubid: "clubid3"},
-          {title: 'Club 4 Orientation',start: new Date(y, m, 17), id: "oaisbv", clubid: "clubid3"},
-          {title: 'Club 4 Event',start: new Date(y, m, 23), id: "102hfa", clubid: "clubid3"},
-        ]
-    ]
+    //tbd, multiple answers for a question, function to submit "wrong" answer asking for approval
+    //also, types of answers, e.g. "true": yes, yeah, correct, true
+    //also, input types (i.e. numbers only, letters only, etc.)
+    /*
+    109hf
+    qiob62
+    io3gb
+    */
     
-    //get lsit of events    
-    user.get('/events/:club', function(req, res) {
+    //get list of events    
+    /*user.get('/events/:club', function(req, res) {
         var cid = req.params.club
         /*api.getEvents(req.token, cid, function(status, body) {
             if (status == 200) {
@@ -184,10 +173,11 @@ var User = function(app, api, store) {
                 res.end()
                 console.log("body: " + status)
             }
-        })*/
-        res.send(exampleClubs[cid]) //temporary
+        })
+        var push = exampleGuilds[aoIndex(exampleGuilds, cid, 'id')]
+        res.send(push) //temporary
         res.end()
-    })
+    })*/
     
     //get specific event info
     user.get('/eventInfo/:club/:id', function(req, res) {
@@ -205,6 +195,324 @@ var User = function(app, api, store) {
             }
         })*/
         res.send('example info')
+        res.end()
+    })
+    
+    var exampleMonsters = [
+        {
+            id:"109hf", //Algebra
+            monsters: [
+                {
+                    name:"Orange Dude",
+                    level: "5",
+                    loot: 1000000,
+                    avatar:"http://i0.kym-cdn.com/photos/images/facebook/000/937/684/915.png",
+                    questions: [
+                        {question: 'Who is the best?',
+                        answer: 'Donald J Trump'},
+                        {question: 'Who is #1?',
+                        answer: 'Donald J Trump'},
+                        {question: 'What is my favorite fruit??',
+                        answer: 'Donald J Trump'},
+                        {question: 'Who is a stable genius?',
+                        answer: 'Donald J Trump'},
+                        {question: 'Who makes the best steaks?',
+                        answer: 'Donald J Trump'},
+                        {question: 'Who is Kim Jong Un most scared of?',
+                        answer: 'Donald J Trump'},
+                        {question: 'Who has the most glorious toupee?',
+                        answer: 'Donald J Trump'},
+                        {question: 'Who has a million dollar loan?',
+                        answer: 'Donald J Trump'},
+                        {question: 'Who does Mr. Town absolutely adore?',
+                        answer: 'Donald J Trump'},
+                        {question: 'Who am I?',
+                        answer: 'Donald J Trump'},
+                        {question: 'Who has a prosperously firm girth?',
+                        answer: 'Donald J Trump'},
+                        {question: 'Who defies the Reptilian Commi-Nazis?',
+                        answer: 'Donald J Trump'},
+                        {question: 'What is love?',
+                        answer: 'Donald J Trump'},
+                        {question: 'What is the meaning of life?',
+                        answer: 'Donald J Trump'},
+                        {question: 'Who did you vote for?',
+                        answer: 'Donald J Trump'},
+                        {question: 'Who deserves an official state religion?',
+                        answer: 'Donald J Trump'},
+                        {question: 'Who does everyone love?',
+                        answer: 'Donald J Trump'},
+                        {question: 'Who is Donald J Trump?',
+                        answer: 'Donald J Trump'},
+                        {question: "Who's gonna pay for the wall?",
+                        answer: 'Not Donald J Trump'},
+                    ]
+                },
+            ]
+        },
+        {
+            id:"io3gb", //History
+            monsters: [
+                {
+                    name:"WWI Hiss-tory",
+                    level: "10",
+                    loot: 1200,
+                    avatar:"https://static.drips.pw/rotmg/wiki/Enemies/NM%20Green%20Dragon%20God%20Hardmode.png",
+                    questions: [
+                        {question: "What was the last name of the general in charge of American troops in WWI?",
+                        answer: "Pershing"},
+                        {question: 'What is the name of the famous Mexican soldier who raided towns in Southern Texas?',
+                        answer: 'Pancho Villa'},
+                        {question: 'What was the largest American battle in history?',
+                        answer: 'Meuse-Argonne offensive'},
+                        {question: 'What German party took blame for the armistice at the end of WW1?',
+                        answer: 'The Socialists'},
+                        {question: 'How many soldiers did America lose in total?',
+                        answer: '112,000'},
+                        {question: 'How American troops died directly from battle?',
+                        answer: '48,000'},
+                        {question: 'How American troops died from disease?',
+                        answer: '64,000'},
+                        {question: 'How American troops were wounded in total?',
+                        answer: '230,000'},
+                        {question: 'How soldiers died on all sides?',
+                        answer: '10,000,000'},
+                        {question: 'How civilians died in total?',
+                        answer: '20,000,000'},
+                        {question: 'In which country were there the most civilian casualties?',
+                        answer: 'Russia'},
+                    ]},
+                    
+                    {
+                    name:"Kaiser Wilhem",
+                    level: "12",
+                    loot: 2000,
+                    avatar:"http://piq.codeus.net/static/media/userpics/piq_70844_400x400.png",
+                    questions: [
+                        {question: "You are under arrest for your crimes against the galaxy.",
+                        answer: "It's treason then."},
+                        {question: "The senate will decide your fate.",
+                        answer: "I AM THE SENATE."},
+                        {question: "Not yet.",
+                        answer: "I AM THE SENATE."},
+                    ]},
+                    
+                    {
+                        name:"Orange Dude",
+                        level: "5",
+                        loot: 1000000,
+                        avatar:"https://opengameart.org/sites/default/files/trump%20pixel%20grande.png",
+                        questions: [
+                            {question: 'Who is the best?',
+                            answer: 'Donald J Trump'},
+                            {question: 'Who is #1?',
+                            answer: 'Donald J Trump'},
+                            {question: 'What is my favorite fruit??',
+                            answer: 'Donald J Trump'},
+                            {question: 'Who is a stable genius?',
+                            answer: 'Donald J Trump'},
+                            {question: 'Who makes the best steaks?',
+                            answer: 'Donald J Trump'},
+                            {question: 'Who is Kim Jong Un most scared of?',
+                            answer: 'Donald J Trump'},
+                            {question: 'Who has the most glorious toupee?',
+                            answer: 'Donald J Trump'},
+                            {question: 'Who has a million dollar loan?',
+                            answer: 'Donald J Trump'},
+                            {question: 'Who does Mr. Town absolutely adore?',
+                            answer: 'Donald J Trump'},
+                            {question: 'Who am I?',
+                            answer: 'Donald J Trump'},
+                            {question: 'Who has a prosperously firm girth?',
+                            answer: 'Donald J Trump'},
+                            {question: 'Who defies the Reptilian Commi-Nazis?',
+                            answer: 'Donald J Trump'},
+                            {question: 'What is love?',
+                            answer: 'Donald J Trump'},
+                            {question: 'What is the meaning of life?',
+                            answer: 'Donald J Trump'},
+                            {question: 'Who did you vote for?',
+                            answer: 'Donald J Trump'},
+                            {question: 'Who deserves an official state religion?',
+                            answer: 'Donald J Trump'},
+                            {question: 'Who does everyone love?',
+                            answer: 'Donald J Trump'},
+                            {question: 'Who is Donald J Trump?',
+                            answer: 'Donald J Trump'},
+                            {question: "Who's gonna pay for the wall?",
+                            answer: 'Not Donald J Trump'},
+                    ]},
+            ]
+        },
+        {
+            id:"qiob62", //Spanish
+            monsters: [
+                {
+                    name:"Aethlwyn",
+                    level: "20",
+                    loot: 500,
+                    avatar:"http://wikiwiki.jp/rmd/?plugin=ref&page=img4&src=Pyyr%20HM.png",
+                    questions: [
+                        {question: 'Translate "Hechizo de magia" to English',
+                        answer: 'Magic spell'},
+                        {question: 'Translate "Espada" to English',
+                        answer: 'Sword'},
+                        {question: 'Translate "Escudo" to English',
+                        answer: 'Shield'},
+                        {question: 'Translate "Mitología" to English',
+                        answer: 'Mythology'},
+                        {question: 'Translate "Empresa" to English',
+                        answer: 'Quest'},
+                        {question: 'Translate "Mago" to English',
+                        answer: 'Wizard'},
+                        {question: 'Translate "Picaro" to English',
+                        answer: 'Rogue'},
+                        {question: 'Translate "Guerrero" to English',
+                        answer: 'Warrior'},
+                        {question: 'Translate "Nigromante" to English',
+                        answer: 'Necromancer'},
+                        {question: 'Translate "Brujo" to English',
+                        answer: 'Warlock'},
+                        {question: 'Translate "Cazador" to English',
+                        answer: 'Hunter'},
+                        {question: 'Translate "Mazmorra" to English',
+                        answer: 'Dungeon'},
+                        {question: 'Translate "Monstruo" to English',
+                        answer: 'Monster'},
+                        {question: 'Translate "Espanto" to English',
+                        answer: 'Ghost'},
+                        {question: 'Translate "Enano" to English',
+                        answer: 'Dwarf'},
+                        {question: 'Translate "Duende" to English',
+                        answer: 'Elf'},
+                        {question: 'Translate "Orco" to English',
+                        answer: 'Orc'},
+                        {question: 'Translate "Botín" to English',
+                        answer: 'Loot'},
+                        {question: 'Translate "Lanzar un hechizo" to English',
+                        answer: 'To cast a spell'},
+                    ]
+                },
+                {
+                    name:"Kürna",
+                    level: "31",
+                    loot: 1200,
+                    avatar:"http://wikiwiki.jp/rmd/?plugin=ref&page=img4&src=Nikao%20HM.png",
+                    questions: [
+                        {question: "How do you say 'the street' in Spanish?",
+                        answer: "la calle"},
+                        {question: "How do you say 'to back up' in Spanish?",
+                        answer: "retroceder"},
+                        {question: "How do you say 'to jump' in Spanish?",
+                        answer: "saltar"},
+                        {question: "Translate 'to fasten'",
+                        answer: "abrocharse"},
+                        {question: "Translate 'to turn off'",
+                        answer: "apagar"},
+                        {question: "Translate 'to turn on'",
+                        answer: "encender"},
+                        {question: "Translate 'to turn'",
+                        answer: "doblar"},
+                        {question: "Translate 'the traffic light'",
+                        answer: "el semaforo"},
+                        {question: "Translate 'the block'",
+                        answer: "el cuadro"},
+                        {question: "Translate 'to rise'",
+                        answer: "despegar"},
+                        {question: "Translate 'to land'",
+                        answer: "aterrizar"},
+                        {question: "Translate 'el pasillo'",
+                        answer: "the aisle"},
+                        {question: "Translate 'los huevos revueltos'",
+                        answer: "the scrambled eggs"},
+                        {question: "Translate 'la miel'",
+                        answer: "the honey"},
+                        {question: "Translate 'las sabanas'",
+                        answer: "the sheets"},
+                        {question: "Translate 'la percha/el colgador'",
+                        answer: "the hanger"},
+                        {question: "Translate 'I forgot'",
+                        answer: "Me olvide"},
+                        {question: "Translate 'I left it'",
+                        answer: "Me deja"},
+                        {question: "Translate 'I missed it'",
+                        answer: "Me falta"},
+                        {question: "Translate 'the towel'",
+                        answer: "la toalla"},
+                    ]},
+                    
+                    {
+                    name:"Eddie",
+                    level: "50",
+                    loot: 2000,
+                    avatar:"https://static.drips.pw/rotmg/wiki/Enemies/Horrific%20Creation.png",
+                    questions: [
+                        {question: "Translate 'la secadora de pelo'",
+                        answer: "the hair dryer"},
+                        {question: "Translate 'the bugs'",
+                        answer: "los bichos"},
+                        {question: "Translate 'hospedarse'",
+                        answer: "to stay"},
+                        {question: "Translate 'el tocino'",
+                        answer: "the bacon"},
+                        {question: "Translate 'the boss'",
+                        answer: "el jefe"},
+                        {question: "Translate 'the weapon'",
+                        answer: "la arma"},
+                        {question: "Translate 'the headphones'",
+                        answer: "los auriculares"},
+                        {question: "What is Samuel Jackson's middle name?",
+                        answer: "Leroy"},
+                        {question: "Translate 'the microphone'",
+                        answer: "el microfono"},
+                        {question: "Translate 'loud'",
+                        answer: "ruidoso"},
+                        {question: "Translate 'My class is loud'",
+                        answer: "Mi clase es ruidoso"},
+                        {question: "Translate 'Turn of your phones'",
+                        answer: "Apaga tus celulares"},
+                        {question: "Translate 'Pay attention, please'",
+                        answer: "Presta atencion, por favor"},
+                        {question: "Translate 'Turn of your phones'",
+                        answer: "Apaga tus celulares"},
+                        {question: "Translate 'the sword'",
+                        answer: "la espada"},
+                        {question: "Translate 'the shield'",
+                        answer: "el escudo"},
+                        {question: "Translate 'pesado'",
+                        answer: "heavy"},
+                        {question: "Translate 'My sword is heavy'",
+                        answer: "Mi escudo es pesado."},
+                    ]},
+            ]
+        },
+    ]
+    
+    //TO BE DEVELOPED::: set and get current abilities and current gear
+    user.get('/hero/', function(req, res) {
+        api.database.hero.get(req.token, function(error, body) {
+            if (!error) {
+                res.send(body.info)
+                res.end()
+            }
+            else {
+                
+        console.log(error)
+                res.status(error.status).send(error.code)
+                res.end()
+            }
+        })
+    })
+    
+    user.get('/monsters/:guild', function(req, res) {
+        var cid = req.params.guild
+        res.send(exampleMonsters[aoIndex(exampleMonsters, cid, 'id')].monsters)
+        res.end()
+    })
+    
+    user.get('/questions/:guild', function(req, res) { //sample questions for demo
+        var cid = req.params.guild
+        res.send(exampleGuilds[aoIndex(exampleGuilds, cid, 'id')].questions)
         res.end()
     })
     
@@ -231,6 +539,13 @@ var User = function(app, api, store) {
     //s e r v e  f i l e s
     //------------------------------
     user.use(express.static(path.join(__dirname, 'client/app')))
+}
+
+function aoIndex(a, t, p) {
+  for (var i = 0, len = a.length; i < len; i++) {
+      if (a[i][p] === t) return i;
+  }
+  return -1;
 }
 
 module.exports = User

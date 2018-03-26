@@ -1,112 +1,150 @@
 <!DOCTYPE html>
-<html>
+<html style="opacity:0">
 <head><!--APP!-->
-	<title>clubs</title>
+	<title>pop/dungeon</title>
 	<meta http-equiv="cache-control" content="private, max-age=86400" />
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
-<body>
-	
+<body ng-app="_app" id="body">
 	<!--ASSETS!--> <!--avoid render blocking!-->
-	<link rel="stylesheet" type="text/css" href="theme.css"> 
+	<link rel="stylesheet" type="text/css" href="theme.css" > 
+	<link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.css"/>
+	!-->
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"></script>
 	
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-calendar/1.0.0/calendar.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/gcal.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/gcal.min.js"></script>
 	
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.css">
-	<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>
 	
 	<script src="https://cdn.jsdelivr.net/sweetalert2/2.2.0/sweetalert2.min.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/2.2.0/sweetalert2.min.css">
+    
+	<link rel="stylesheet" type="text/css" href="overrides.css" />
     <!--END ASSETS!-->
     
 	<div class="ui sidebar" id="sidebar">
-		<div class="ui inverted segment pushable">
-			<!--<div id="topMenuContainer">
-				<div id="topMenu">
-					<div class="ui circular icon button topMenuItem" data-tooltip="Logout" data-position="bottom left" data-variation="large" onclick="logOut()">
-					  <i class="sign out icon compact large"></i>
-					</div>
-					<div class="ui circular icon button topMenuItem" data-tooltip="Help" data-position="bottom center" data-variation="large" tabindex="0" onclick="openHelp()">
-					  <i class="help icon compact large"></i>
-					</div>
-					<div class="ui circular icon button topMenuItem" data-tooltip="Feedback" data-position="bottom right" data-variation="large" tabindex="0" onclick="openFeedback()">
-					  <i class="announcement icon compact large"></i>
+		<div class="ui inverted segment pushable fancy-scroll" style="height:77px;margin:0;background-size:100% 100%;background-image:url('https://images.onlinelabels.com/images/clip-art/Gerald_G/Gerald_G_Parchment_Background_or_Border.png')">
+		    <div class="ui red label big corner top left">
+		    	<i class="flag icon"></i>
+		    </div>
+		    <br>
+		    <center class="ui header inverted big" style="margin:auto">
+	          	 	<h1 style="color:black!Important;text-shadow:1px 1px white;font-family:georgia">GUILDS</h1>
+	        </center>
+		    <!--
+			<div class="ui accordion inverted" id="clubMenuAccordion">
+		    	<!--
+		      	<div id="clubMenu" class="content ui menu inverted">
+					<button class="ui circular green inverted icon button clubMenuItem" data-tooltip="Join Guild" data-position="bottom left" data-variation="large" onclick="joinClick()">
+					  <i class="add icon"></i>
+					</button>
+					<button class="ui circular red inverted icon button clubMenuItem" data-tooltip="Leave Guild" data-position="bottom center" data-variation="large" tabindex="0" onclick="leaveClick()">
+					  <i class="remove icon"></i>
+					</button>
+					<button class="ui circular blue inverted icon button clubMenuItem" data-tooltip="Create Guild" data-position="bottom right" data-variation="large" tabindex="0" onclick="createClick()">
+					  <i class="wizard icon"></i>
+					</button>
+					<!--<div class="ui circular icon button clubMenuItem" data-tooltip="Debug" data-position="bottom right" data-variation="large" tabindex="0" ng-click="debug()">
+					  <i class="debug icon compact large"></i>
 					</div>
 				</div>
-			</div>!-->
-			<div id="clubMenuContainer">
-				<div id="clubMenu">
-					<div class="ui circular icon button clubMenuItem" data-tooltip="Join Club" data-position="bottom left" data-variation="large" onclick="joinClick()">
-					  <i class="add icon compact large"></i>
+				!-->
+		      </div>
+			<div class="ui inverted basic segment fancy-scroll" style="margin-top:0px;background-color:transparent;overflow-y:visible;padding:0;" id="clubBox"> <!-- dynamic club list!-->
+				<div class="ui huge inverted" style="width:fit-content!important;padding-bottom:50px;border-top:none" id="clubList">
+						<div ng-repeat="c in clubs" class='clubBtn' ng-click='c.open()' style="width:340px;background-image:url('banner.png');background-size:100% 170%;background-repeat:no-repeat;overflow:visible!important;background-position:-35px;margin-top:20px">
+								
+								<div class='content'>
+									<p class='ui header left fluid' style="font-size:22px;color:white;margin-left:20px;margin-top:10px;text-shadow:1px 1px black;font-weight:bold;">{{c.name}}</p>
+							    </div>
+						</div>
 					</div>
-					<div class="ui circular icon button clubMenuItem" data-tooltip="Leave Club" data-position="bottom center" data-variation="large" tabindex="0" onclick="leaveClick()">
-					  <i class="remove icon compact large"></i>
-					</div>
-					<div class="ui circular icon button clubMenuItem" data-tooltip="Create Club" data-position="bottom right" data-variation="large" tabindex="0" onclick="createClick()">
-					  <i class="wizard icon compact large"></i>
-					</div>
-				</div>
-			</div>
-			<div class="ui inverted segment fancy-scroll" id="clubBox">
-				<div class="ui big inverted divided relaxed selection list" id="clubList">
-					<!--added w/ js!-->
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="dimmed pusher">
-		<div ng-app="_app">
-			<h2 class="ui block header inverted">
-				<button id="sidebarBtn" class="material-icons" onclick="toggleSidebar()">view_headline</button>
-				<p id="topbarTitle">{{title}}</p>
-				<div id="topMenu">
-					<div class="ui animated blue button topMenuItem" tabindex="0" onclick="goToCalendar()">
-					  <div class="visible content"><i class="calendar icon compact large"></i></div>
-					  <div class="hidden content">
-					  	Agenda
-					  </div>
+
+	<div class="dimmed pusher" id="pusher">
+		<div ng-controller="mainFrame">
+			<div class="ui fixed inverted menu compact" id="topBar">
+				<button id="sidebarBtn" class="ui icon button inverted red huge left attached" ng-click="toggleSidebar()">
+					<i class="flag icon"></i>
+				</button>
+				<button id="dashboardBtn" class="ui icon button inverted blue huge left attached" ng-click="goToCalendar(false)">
+					<i class="home icon"></i>
+				</button>
+				<button id="heroBtn" class="ui icon button inverted orange huge left attached" ng-click="goToHeroScreen(false)">
+					<i class="user alternate icon"></i>
+				</button>
+				<button class="ui icon dropdown button inverted grey big floating left attached" id="settingsBtn">
+					<i class="material-icons">settings</i>
+					<div class="menu">
+						<div class="ui button item" ng-click="logOut()">Logout</div>
+						<div class="ui button item" ng-click="openHelp()">Help</div>
+						<div class="ui button item" ng-click="openFeedback()">Feedback</div>
 					</div>
-					<div class="ui animated button topMenuItem" tabindex="0" onclick="logOut()">
-					  <div class="visible content"><i class="sign out icon compact large"></i></div>
-					  <div class="hidden content">
-					  	Sign Out
-					  </div>
-					</div>
-					<div class="ui animated button topMenuItem" tabindex="0" onclick="openHelp()">
-					  <div class="visible content"><i class="help icon compact large"></i></div>
-					  <div class="hidden content">
-					  	Help
-					  </div>
-					</div>
-					<div class="ui animated button topMenuItem" tabindex="0" onclick="openFeedback()">
-					  <div class="visible content"><i class="announcement icon compact large"></i></div>
-					  <div class="hidden content">
-					  	Feedback
-					  </div>
+				</button>
+				<div id="topbarTitle" class="ui header fluid item">
+					{{hero.name}} &emsp;
+					<i class="ui orange fire icon" style="margin:0!important"></i>
+					{{hero.level}}
+					&nbsp;&nbsp;
+					<div class="ui orange progress" id="xpBar" data-total="20" style="margin:auto; width:200px;">
+						<div class="bar"></div>
 					</div>
 				</div>
-				
-			</h2>
-			<section class="ui segment" id="directives-calendar" ng-controller="CalendarCtrl">
-				<div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar" id="calendar"></div>
-			</section>
-			<div id="club-container">hello</div>
+			</div>
+			<div>
+				<div class="ui dimmer" ng-class="{'active': clubs.length == [] || hero == null}">
+					<div class="ui loader"></div>
+				</div>
+				<div id="view-container" ng-include="getSrc()"></div> <!-- VIEW FOR EVERYTHING BELOW TOPBAR!-->
+			</div>
 		</div>
 	</div>
+	
+	<div id="modal" ng-include="getModal()"></div> <!-- VIEW FOR MODAL POPUP !-->
+	
 	<script src="./js/init.js"></script>
 	<script src="./js/index.js"></script>
-	<script src="./js/controllers.js"></script>
-	<script src="./js/routes.js"></script>
-
+	
+	<!--Calendar UI files!-->
+	<link rel="stylesheet" href="./calendar/style.css">
+	<script src="./calendar/js/calendar.js"></script>
+	<script src="./calendar/js/controller.js"></script>
+	
+	<!--Club UI specific files!-->
+	<link rel="stylesheet" href="./club/style.css">
+	<script src="./club/js/controller.js"></script>
+	<script src="./club/js/routes.js"></script>
+	
+	<!--PHASER - GAME DEVELOPMENT ENGINE!-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js"></script>
+	<script src="./phaser/game.js"></script>
+	<link rel="stylesheet" type="text/css" href="./modals/modal_styles.css" />
+	<!--END PHASER!-->
+	
+	<!--GAME NON-CANVAS RESOURCES!-->
+	<script src="./modals/scripts/results.js"></script>
+	<!--END!-->
+	<script>
+  		setTimeout(function() {
+  	      document.documentElement.style.opacity = 1;
+  	    }, 200);
+  	    $('.jiggle').transition('jiggle', 1000)
+  	</script>
+	
 </body>
 
 </html>

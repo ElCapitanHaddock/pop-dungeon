@@ -2,10 +2,10 @@
 <div id='tar'>
     <div>
     <br>
-    <form ng-submit="submit()" ng-controller="submitCreds" name="login" class="authForm">
+    <form novalidate="true" ng-submit="submit()" ng-controller="submitCreds" name="login" class="authForm">
         <input name="username" ng-model="username" placeholder="email" class="authInput" required>
-        <input type="password" name="password" ng-model="password" placeholder="pass" class="authInput" required>
-        <button class="button2">{{buttonText}}</button>
+        <input type="password" autocomplete="off" name="password" ng-model="password" placeholder="pass" class="authInput" required>
+        <button type="submit" class="button2">{{buttonText}}</button>
     </form>
 </div>
 

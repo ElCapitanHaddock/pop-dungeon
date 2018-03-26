@@ -1,0 +1,60 @@
+
+
+<div ng-controller="homeCtrl" ng-init="init()">
+    <!--<div class="ui top left attached huge teal label" style="z-index:2;background:none!important;border:none!Important;">
+        <button class="ui icon big button teal circular">
+    		<i class="ui globe icon"></i> World
+    	</button>
+    </div>!-->
+    <div style="height:10px;"></div>
+    <div class="ui image rounded dimming fluid">
+            <center class="ui dimmer fancy-scroll" style="box-sizing:none;z-index:auto!Important;border-radius:10px!important;width:95%;max-height:100%;height:300px;object-fit:cover;margin-left:2.5%;overflow:hidden">
+                <center class="content">
+                    <h3 class="ui header inverted">
+                        <i class="ui angle double left big fitted icon worldNavBtn" style="display:inline"></i> &nbsp;&nbsp;&nbsp;&nbsp; {{club.world}} &nbsp;&nbsp;&nbsp;&nbsp; <i class="ui angle double right big icon worldNavBtn"></i>
+                    <br></br>
+                    <div class="sub header" style="width:80%">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+                    </h3>
+                </center>
+            </center>
+        <img ng-src="{{club.background}}" style="object-fit:cover;height:300px;overflow:hidden;width:95%;border-radius:10px!important;"></img>
+    </div>
+    
+    <center class="ui one column stackable doubling grid container fancy-scroll" (window:resize)="onResize($event)">
+            <center class="centered column ui three column stackable grid container" >
+                <div ng-repeat="m in monsters" class="fluid column"  style="max-width:650px">
+                    <!--monster quest list!-->
+                    <div class="ui inverted items segment fluid">
+                        <div class="ui red ribbon label top left big">NEW!</div>
+                        <center>
+                            <div class="ui segment secondary inverted circular raised image" style="background-image:url('https://media.cmcdn.net/7c3c1e3a2f74842c788c/21009917/960x640.png');background-position:50% 92%;max-width:198px;width:198px;height:198px;padding-bottom:160px;overflow:hidden;">
+                                <img ng-src="{{m.avatar}}" style="position:absolute;margin-left:-70px;z-index:1;"></img>
+                            </div>
+                            
+                            <div class="ui header inverted" style="white-space:nowrap">
+                                <h2 style="font-weight:bold;white-space:nowrap;max-width:90%;overflow:hidden;">{{m.name}} &nbsp; <i class="yellow star icon"></i>{{m.level}}</h2>
+                                <!--
+                                <h2 ng-if="m.name.length <= maxMonstChar" style="font-weight:bold;white-space:nowrap">{{m.name}} &nbsp; <i class="yellow star icon"></i>{{m.level}}</h2>
+                                <h2 ng-if="m.name.length > maxMonstChar" style="font-weight:bold;white-space:nowrap">{{m.name | limitTo : maxMonstChar}}... &nbsp; <i class="yellow star icon"></i>{{m.level}}</h2>
+                                !-->
+                                <div></div>
+                            </div>
+                        </center>
+                        <div class="ui button huge primary bottom attached" ng-click="openGame($index)"><i class="diamond icon"></i>{{m.loot}}</div>
+                    </div>
+                </div>
+            </center>
+    </center>
+</div>
+
+<script>
+//var test = $('.shape').shape().height("325px");
+$('.dimming')
+    .dimmer({
+        on: 'hover',
+    });
+$('.ui.dropdown').dropdown();
+
+</script>

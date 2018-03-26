@@ -1,0 +1,71 @@
+
+<div id="calendar-container" ng-init="checkClub()">
+    <section class="ui stackable centered grid compact" id="directives-calendar" ng-controller="CalendarCtrl">
+    
+        <div class="doubling two column row">
+            <div class="ten wide column raised" id="calendar-container">
+                <div class="ui segment">
+                    <div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar" id="calendar"></div>
+            	</div>
+            </div>
+            
+        	<div class="four wide column raised" id="event-container">
+        	
+        	    <div class="ui top attached tabular menu">
+                  <a class="item filterSel" data-tab="today" ng-class="filterActive('today')" id="todayTab" ng-click="setFilter('today')">Today</a>
+                  <a class="item filterSel" data-tab="week" ng-class="filterActive('week')" id="weekTab" ng-click="setFilter('week')">Week</a>
+                  <a class="item filterSel" data-tab="month" ng-class="filterActive('month')" id="monthTab" ng-click="setFilter('month')">Month</a>
+                </div>
+                
+                <div class="ui bottom attached tab segment" ng-class="filterActive('today')"data-tab="today">
+                    <div class="event-scroll fancy-scroll">
+                        <div ng-repeat="e in events | filter: {month: thisMonth, day: thisDay}" ng-click="modals.event(e)">
+                            <div class="alert alert-info ui message" ng-class="e.color">
+                                <!--<div class="" ng-class="e.ribbon">{{e.clubInitial}}</div>!-->
+                                <center>
+                                    <b>{{e.title}}</b> 
+                                    <div></div>
+                                    {{e.monthName}} {{e.day}}
+                                    <div></div>
+                                    {{e.end | date:"MMM dd"}}
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ui bottom attached tab segment" ng-class="filterActive('week')" data-tab="week">
+                      <div class="event-scroll fancy-scroll">
+                        <div ng-repeat="e in events | filter: {week: thisWeek, month: thisMonth}" ng-click="modals.event(e)">
+                            <div class="alert alert-info ui message" ng-class="e.color">
+                                <center>
+                                    <b>{{e.title}}</b> 
+                                    <div></div>
+                                    {{e.monthName}} {{e.day}}
+                                    <div></div>
+                                    {{e.end | date:"MMM dd"}}
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ui bottom attached tab segment" ng-class="filterActive('month')" data-tab="month">
+                    <div class="calendar-event-scroll fancy-scroll">
+                        <div ng-repeat="e in events | filter: {month: thisMonth}" ng-click="modals.event(e)">
+                            <div class="alert alert-info ui message" ng-class="e.color">
+                                <center>
+                                    <b>{{e.title}}</b> 
+                                    <div></div>
+                                    {{e.monthName}} {{e.day}}
+                                    <div></div>
+                                    {{e.end | date:"MMM dd"}}
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

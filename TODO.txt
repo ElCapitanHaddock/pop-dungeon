@@ -1,0 +1,33 @@
+
+
+CHANGES TO DO
+
+Client
+
+1. Universal player hero across worlds.
+
+2. "Guilds" instead of "classes" that give out "Quests"
+
+3. Rename to "Monster Slayers"
+
+4. Change into one big Angular view that switches between external game GUI and in-game canvas
+    - "Results" becomes a modal within game view instead of overall
+    - Back button to return to game GUI
+
+5. Include "character creation screen" in registration process
+
+6. Instead of "Calendar", "My Quests". Save Calendar UI as temp file.
+
+7. Add topbar options for managing hero equipment and achievements
+
+8. Splash screen for login and loading game
+
+==========================================
+
+Server
+
+1. Databasing for universal player hero associated with account
+
+2. Databasing for player's "Guilds", "Worlds", and "Quests"
+
+3. 

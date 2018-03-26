@@ -1,0 +1,74 @@
+
+<div class="ui modal" ng-controller="GAME" ng-init="init()" id="GAME_CONTAINER">
+    <div class="ui container fluid" id="game_inline">
+        <div id="upperUI">
+            <div id="question" class="ui segment inverted" style="margin-top:0!important;margin-bottom:0!Important;border-radius:0">
+                <h3><i id="question_icon" class="ui circular warning icon large"></i>
+                 <!--What is the difference between meiosis and mitosis?!-->
+                 {{question}}
+                </h3>
+            </div>
+            <!-- TIMER !-->
+            <div class="ui progress teal bottom attached" id="timeBar" style="height:20px">
+                <div class="bar" style="height:20px"></div>
+            </div>
+        </div>
+        
+        <!--CANVAS!-->
+        <div id="render"></div>
+        <!--CANVAS!-->
+        
+        <!--INTERACTIVE!-->
+        <div id="lowerUI">
+            <div class="ui three column grid stackable"  style="padding:none;margin:0;!important">
+                    <div class="column seven wide" style="padding:0;margin:0;!important" id="answerColumn">
+                        <form ng-submit="submitAns()">
+                            <div class="ui icon fluid input huge" id="answerUI" ng-class="answerState" style="height:56px;margin-top:0!important;padding:0;">
+                                <input id="answer" type="text" placeholder="Answer" style="border-radius:0" ng-model="answer">
+                                    <i class="lightning icon" type="submit"></i>
+                                </input>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="column seven wide" style="padding:0;margin:0;" id="energyColumn">
+                        <div id="energyBar" class="ui indicating progress" data-value="0" data-total="5" style="padding:0;margin-top:0;margin-bottom:0;border-radius:0;">
+                          <div class="bar" style="height:56px;margin:0;border-radius:0!important">
+                              <!--<div class="progress"></div>
+                              <i class="ui lightning icon large" style="background-color:transparent"></i>
+                              !-->
+                          </div>
+                        </div>
+                    </div>
+                    <div class="column two wide" style="padding:0;margin:0;" id="abilityColumn">
+                        <div ng-click="useAbility()" class="ui button fluid blue" style="border-radius:0;height:56px" id="abilityButton" ng-class="checkEnergy(hero.current.ability)">
+                            <img class="ui image centered mini" style="padding:0;" ng-src="{{assets.abilities[hero.current.ability]}}"></img>
+                        </div>
+                        <!--<div class="ui grid three column" style="padding:0;margin:0;">
+                            <div class="column" style="padding:0;margin:0;">
+                                <div ng-click="readAbility(hero.current.abilities[0])" class="ui button fluid red" style="border-radius:0;height:56px" ng-class="checkEnergy(hero.current.abilities[0])">
+                                    <img class="ui image mini" style="padding:0;" ng-src="{{assets.abilities[hero.current.abilities[0]]}}"></img>
+                                </div>
+                                <div class="ui blue label floating">{{abilityStats[hero.current.abilities[0]].energy}}</div>
+                            </div>
+                            <div class="column" style="padding:0;margin:0;">
+                                <div ng-click="readAbility(hero.current.abilities[1])" class="ui button fluid teal" style="border-radius:0;height:56px" ng-class="checkEnergy(hero.current.abilities[1])">
+                                    <img class="ui image mini" style="padding:0;" ng-src="{{assets.abilities[hero.current.abilities[1]]}}"></img>
+                                </div>
+                                <div class="ui blue label floating">{{abilityStats[hero.current.abilities[1]].energy}}</div>
+                            </div>
+                            <div class="column" style="padding:0;margin:0;">
+                                <div ng-click="readAbility(hero.current.abilities[2])" class="ui button fluid orange" style="border-radius:0;height:56px" ng-class="checkEnergy(hero.current.abilities[2])">
+                                    <img class="ui image mini" style="padding:0;" ng-src="{{assets.abilities[hero.current.abilities[2]]}}"></img>
+                                </div>
+                                <div class="ui blue label floating">{{abilityStats[hero.current.abilities[2]].energy}}</div>
+                            </div>
+                        </div>!-->
+                    </div>
+                </div>
+            </div>
+        <!--INTERACTIVE!-->
+    </div>
+</div>
+<script>
+</script>
+<script src="./phaser/init.js">

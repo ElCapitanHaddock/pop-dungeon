@@ -1,0 +1,27 @@
+
+
+#GAME_CONTAINER {
+    /*background-image:url("http://www.richardsteiner.at/img/bg.jpg");*/
+    /*background:blue;*/
+    background: linear-gradient(to top, black, white);
+}
+
+#game_inline {
+    padding:0!important;
+    margin:0!important;
+}
+
+#heroModal {
+}
+
+#lowerUI {
+}
+
+#energyBar {
+    background: black; /* For browsers that do not support gradients */
+    background: linear-gradient(to right, #777777, #5c6068);
+}
+
+#render {
+    overflow:hidden;
+}

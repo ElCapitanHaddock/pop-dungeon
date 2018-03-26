@@ -1,51 +1,91 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>clubs</title>
-	<meta name="viewport" content=" initial-scale=1, maximum-scale=1, minimum-scale=1">
-	<meta http-equiv="cache-control" content="public, max-age=86400" />
-</head>
-
-<body ng-app="_app" onload="document.body.style.opacity='1'">
+<html lang="en">
+  <head>
+    <title>pop/dungeon</title>
+	  <link rel="stylesheet" type="text/css" href="theme.css"> 
+	</head>
+  <body ng-app="_app" ng-controller="mainFrame">
+    <img id="bgImage" src="https://media.cmcdn.net/7c3c1e3a2f74842c788c/21009917/960x640.png"></img>
+    <center id="blOver">
+      <span id="main">
+        <p id="title" class="breathing ui header">pop/dungeon</p>
+        <span id="formContainer">
+          <input id="userInput" class="breathing loginInp" placeholder="email" ng-model="username"></input>
+          <input id="passInput" type="password" class="breathing loginInp" placeholder="password" ng-model="password"></input>
+          <div class="height:0.5em"></div>
+          <button id="goButton" ng-click="login()" type="submit">
+            <div style="font-weight:bold;margin-bottom:10px;">
+              <i class="material-icons" style="font-size:1.25em">directions_run</i> LOGIN
+            </div>
+          </button>
+          <br></br>
+          
+          <div style="width:calc(5vw + 120px);border-top:1px solid white;opacity:0.5;transition:all .2s ease-in-out"></div> <!--line divider!-->
+          
+          <button id="registerButton" ng-click="signup()" type="submit">
+              <i class="ui fire icon"></i> &nbsp; NEW GAME
+          </button>
+        </span>
+      </span>
+    </center>
+    
+    <div class="ui modal basic" id="signupModal" style="position:fixed">
+      <center ng-controller="signup">
+            <h1 style="font-size:4em!Important" class="ui header massive inverted">BEGIN YOUR ADVENTURE</h1>
+            <br></br>
+            <div id="classSelect">
+              <div class="classSelection" ng-class="isActive(0)" ng-click="selectClass(0)">
+                <img class="classImage" src="http://static.wixstatic.com/media/5a7184_7ae5301c8e764f34911caa0ca8a66e94.png"></img>
+                <h2>Knight</h2>
+              </div>
+              <div class="classSelection" ng-class="isActive(1)" ng-click="selectClass(1)">
+                <img class="classImage" src="https://vignette2.wikia.nocookie.net/realmofthemadgod/images/8/8f/Wizard_0.png/revision/latest?cb=20111104231251"></img>
+                <h2>Wizard</h2>
+              </div>
+              <div class="classSelection" ng-class="isActive(2)" ng-click="selectClass(2)">
+                <img class="classImage" src="https://vignette1.wikia.nocookie.net/realmofthemadgod/images/2/29/Archer.png/revision/latest?cb=20111104230908"></img>
+                <h2>Rogue</h2>
+              </div>
+            </div>
+            <br></br>
+            <br></br>
+            <input type="text" placeholder="hero name" class="signInput" ng-model="nick" style="font-size:34px"></input>
+            <div></div>
+            <input type="text" placeholder="email" class="signInput" ng-model="username"></input>
+            <div></div>
+            <input type="password" placeholder="password" class="signInput" ng-model="password"></input>
+            <br></br>
+            <br></br>
+            <input type="button" ng-click="register()" class="customConfirm" value="START"></input>
+      </center>
+    </div>
+    
+    <center class="ui modal basic" id="messageModal">
+        <img ng-show="message.type=='error'" class="ui image medium" style="margin:auto" src="oryx.gif"></img>
+        <img ng-show="message.type=='warning'" class="ui image medium" style="margin:auto" src="golden.png"></img>
+        <img ng-show="message.type=='success'" class="ui image medium" style="margin:auto" src="unicorn.png"></img>
+        <h1 class="ui massive header center aligned" style="font-size:10em">{{message.title}}</h1>
+        <h3 class="ui header center aligned" style="font-size:3em">{{message.body}}</h3>
+    </center>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+	  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	
-	<!--ASSETS!-->
-	<link rel="stylesheet" type="text/css" href="theme.css"> 
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/sweetalert2/2.2.0/sweetalert2.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/2.2.0/sweetalert2.min.css">
-	<!--END ASSETS!-->
-	
-	<div id="master">
-		<div id="head">
-			<p class="title" ng-bind="title"></p>
-			<center class="menu">
-				<a class="menuOption blue material-icons" href="#main" ng-style="mainSt">{{mainTx}}</a>
-				<a class="menuOption blue material-icons" href="#login" ng-style="loginSt">{{loginTx}}</a>
-				<a class="menuOption blue material-icons" href="#signup" ng-style="signupSt">{{signupTx}}</a>
-			</center>
-		</div>
-		<center id="view">
-			<div ng-view></div>
-		</center>
-	</div>
-	<br>
-	<!--
-	<center>
-		<a href="http://www.beyondsecurity.com/vulnerability-scanner-verification/clubs-sbojevets.c9users.io"><img src="https://seal.beyondsecurity.com/verification-images/clubs-sbojevets.c9users.io/vulnerability-scanner-2.gif" alt="Website Security Test" border="0" /></a>
-	</center>
-	!-->
-	<script src="./js/index.js"></script>
-	<script src="./js/controllers.js"></script>
-	<script src="./js/routes.js"></script>
-	<script>
-		setTimeout(function() {
-	      document.getElementById('master').style.opacity = 1;
-	    }, 250);
-	</script>
-
-</body>
-
+	  <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css">
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>
+    
+    <script src="./js/index.js"></script>
+	  
+    <script>
+  		setTimeout(function() {
+  	      document.getElementById('blOver').style.opacity = 1;
+  	    }, 200);
+  	</script>
+  </body>
 </html>

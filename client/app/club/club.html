@@ -1,0 +1,48 @@
+
+<link rel="stylesheet" ng-href="./club/style.css">
+<script src="./club/js/controller.js"></script>
+<script src="./club/js/routes.js"></script>
+
+<center id="clubCenterer">
+  <div class="ui segment compact basic" id="clubInner">
+    <div class="ui top attached icon menu inverted top attached" ng-class="club.color" id="clubContentMenu">
+      <h1 class="item" style="font-weight:bold;">{{club.name}}</h1>
+      <a ng-class="isActive('home')" class="item" ng-href="#{{club.name}}/{{club.id}}/home">
+        <i class="clubMenuIcon compass icon big"></i>
+      </a>
+      <a ng-class="isActive('leaderboards')" class="item" ng-href="#{{club.name}}/{{club.id}}/leaderboards">
+        <i class="clubMenuIcon trophy icon big"></i>
+      </a>
+      <!--
+      <a ng-class="isActive('hero')" class="item" ng-href="#{{club.name}}/{{club.id}}/hero">
+        <i class="clubMenuIcon male icon big"></i>
+        Hero
+      </a>
+      !-->
+      <!--
+      <a ng-class="isActive('events')" class="item" ng-href="#{{club.name}}/{{club.id}}/events">
+        <i class="clubMenuIcon calendar outline icon big"></i>
+      </a>
+      !-->
+      <a ng-class="isActive('tavern')" class="item" ng-href="#{{club.name}}/{{club.id}}/tavern">
+        <i class="clubMenuIcon bar icon big"></i>
+      </a>
+      <a ng-class="isActive('shop')" class="item" ng-href="#{{club.name}}/{{club.id}}/shop">
+        <i class="clubMenuIcon shop icon big"></i>
+      </a>
+      <!--
+      <a ng-class="isActive('people')" class="item" ng-href="#{{club.name}}/{{club.id}}/people">
+        People
+      </a>
+      !-->
+      <!--
+      <a ng-class="isActive('about')" class="item" ng-href="#{{club.name}}/{{club.id}}/about">
+        About
+      </a>
+      !-->
+    </div>
+    <div class="ui bottom attached segment fancy-scroll" id="pageContainer" style="max-width:95vw;min-width:50vw" ng-controller="pageCtrl">
+      <div ng-include="getPage()" id="pageView" style="width:fit-content"></div>
+    </div>
+  </div>
+</center>

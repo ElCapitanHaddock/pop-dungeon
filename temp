@@ -1,0 +1,78 @@
+
+import java.util.ArrayList;
+public class Prequel
+{
+    public static void main()
+    {
+        System.out.println("Hello there.");
+        System.out.println("Did you ever hear the tragedy of Darth Plagueis The Wise? I thought not. It’s not a story the Jedi would tell you. It’s a Sith legend. Darth Plagueis was a Dark Lord of the Sith, so powerful and so wise he could use the Force to influence the midichlorians to create life… He had such a knowledge of the dark side that he could even keep the ones he cared about from dying. The dark side of the Force is a pathway to many abilities some consider to be unnatural. He became so powerful… the only thing he was afraid of was losing his power, which eventually, of course, he did. Unfortunately, he taught his apprentice everything he knew, then his apprentice killed him in his sleep. Ironic. He could save others from death, but not himself.");
+        boolean hates_sand = true;
+        String sand = "Coarse, rough, irritating, and it gets everywhere";
+        int order = 66;
+        boolean was_the_chosen_one = true;
+        podrace();
+        execute_order(66);
+        boolean IS_SENATE = true;
+        int powers = 0;
+        while (IS_SENATE) {
+            if (powers > 10) {
+                break;
+            }
+            powers += 1;
+            System.out.println("UNLIMITED POOOOWWWEEEEER!!1");
+        }
+        String[] sand_array = {"coarse", "rough", "irritating", "gets everywhere"};
+        ArrayList MaceWindu = new ArrayList();
+        MaceWindu.add("purple lightsaber");
+        int[][] good_movies = {{1, 2}, {3, 4}, {5, 6}};
+        kill_jedi(300);
+        
+    }
+    public static void podrace()
+    {
+        for (int i = 0; i < 7; i++) {
+            System.out.println("I'll try looping! That's a good trick!");
+        }
+    }
+    public static String execute_order(int order)
+    {
+        if (order == 66)
+        {
+            return "kill the men";
+        }
+        else if (order == 66)
+        {
+            return "kill the women and the younglings too";
+        }
+        else {
+            return "it's treason then";
+        }
+    }
+    public static int kill_jedi(int survivors) {
+        if (survivors <= 3) {
+            return 2;
+        }
+        return kill_jedi(survivors - 1);
+    }
+}
+
+
+
+
+public class BoneHurtingJuice
+{
+    String variable = "";
+    public BoneHurtingJuice()
+    {
+        variable = "a variable";
+    }
+    public void a_mutator_method()
+    {
+        variable = "a mutated variable";
+    }
+    public String an_accessor_method()
+    {
+        return variable;
+    }
+}
+

@@ -133,7 +133,7 @@ function connect() {
       console.error(err);
       process.exit(2);
     }
-  
+
     pm2.start('config.json', function(err, apps) {
       if (err) console.log(err);
       else pm2.disconnect()
