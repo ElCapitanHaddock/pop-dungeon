@@ -26,7 +26,7 @@ html {
     -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
    /* background-image: url("https://media.cmcdn.net/7c3c1e3a2f74842c788c/21009917/960x640.png");*/
     background-image: url("https://media.cmcdn.net/7c3c1e3a2f74842c788c/21009917/960x640.png"), linear-gradient(transparent, black);/*http://oi68.tinypic.com/mu9b4o.jpg*/
-    transition: all .2s ease-in-out
+    transition: all .1s ease-in-out
 }
 
 html.ios {
@@ -367,13 +367,14 @@ input.formInvalid::-webkit-input-placeholder {
 .fancy-scroll::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	border-radius:5px;
+	opacity:0.5;
 	background-color: #F5F5F5;
 }
 
 .fancy-scroll::-webkit-scrollbar {
 	width: 10px;
 	border-radius:5px;
-	background-color: #F5F5F5;
+	background-color: rgba(0,0,0,0.3);
 }
 
 .fancy-scroll::-webkit-scrollbar-thumb {

@@ -271,10 +271,6 @@ var Login = function(app, api, store) {
             }
         })
     }
-    
-    
-    
-    
 }
 
 var illegal = !/[~`!#$%\^&*+=\-\[\]\\',/{}|\\":<>\?]/g;

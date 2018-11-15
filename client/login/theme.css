@@ -200,7 +200,7 @@ input.formInvalid::-webkit-input-placeholder {
     font-size:30px;
     text-align:center;
     height:calc(fit-content);
-    transition: all .5s ease-in-out;
+    transition: all .1s ease-in-out;
 }
 
 #goButton:hover {
@@ -221,7 +221,7 @@ input.formInvalid::-webkit-input-placeholder {
     font-size:20px;
     font-weight:bold;
     font-style:italic;
-    transition: all .5s ease-in-out;
+    transition: all .1s ease-in-out;
     text-shadow:2px 2px 5px black;
 }
 

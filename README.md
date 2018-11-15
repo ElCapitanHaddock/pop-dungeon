@@ -1,5 +1,5 @@
 # Clubs App
-## by Jeremy Yang and Jevin Gu
+## by Jeremy Yang
 ----------------------------------------------
 ### Running the server
 

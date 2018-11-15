@@ -6,8 +6,11 @@
 
 #calendar-container {
 	margin-top:7vh;
-	height:80vh;
-	max-height:80vh;
+	height:90vh;
+	max-height:90vh;
+	width:95vw;
+	margin-top:10vh;
+	padding-top:0!important;
 	overflow:auto;
 }
 

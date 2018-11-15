@@ -5,11 +5,6 @@ var app = angular.module('_app', ["ngRoute"]);
 app.run(function($rootScope) {
    $rootScope.message = {title: "", body: "", type: ""}
 });
-/*
-app.config(['$locationProvider', function($locationProvider) {
-  $locationProvider.hashPrefix('');
-}]);
-*/
 
 function authenticateForm($scope, $rootScope, $http, newAccount) {
     console.log('Hello there!')
@@ -152,35 +147,6 @@ function swalAlert($rootScope, title, body, type, dur) {
         allowMultiple: false,
         blurring:true
     }).modal('show')
-    /*
-    clearTimeout(alertime);
-    alertime = setTimeout(function() {
-        if (dur == "forever") {
-          swal({   
-            title: title,   
-            text: "<span style='color:white!important'>" + body + "</span",
-            html:true,
-            allowOutsideClick: true,
-            type: type,   
-            showCloseButton: true,
-            showConfirmButton: false, 
-            background: "transparent",
-          });
-        }
-        else {
-          swal({   
-            title: title,   
-            text: body,
-            allowOutsideClick: true,
-            type: type,
-            timer: dur,   
-            showCloseButton: true,
-            showConfirmButton: false, 
-            background: "transparent",
-          });
-        }
-    }, 300);
-    */
     
 }
 var alertime;

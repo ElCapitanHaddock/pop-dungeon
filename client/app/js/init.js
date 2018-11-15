@@ -198,6 +198,7 @@ app.run(function($rootScope, $http, $route, $timeout, $location) {
     }
     
     $rootScope.getClubByIndex = function(id) {
+      if (aoIndex($rootScope.clubs, id, 'id') == -1) return false
       return $rootScope.clubs[aoIndex($rootScope.clubs, id, 'id')]
     }
     
@@ -206,13 +207,20 @@ app.run(function($rootScope, $http, $route, $timeout, $location) {
         }
         else if ($route.current.params.club !== undefined) {
             setTimeout(function() {
-              $rootScope.getClubByIndex($route.current.params.clubid).open(true)
+              var ref = $rootScope.getClubByIndex($route.current.params.clubid)
+              if (!ref) {
+                $location.path('/')
+                $rootScope.goToCalendar(false)
+              }
+              else {
+                ref.open(true)
+              }
             }, 500)
         }
     }
     
     $rootScope.openClub = function(club, toggleSidebar) {
-      $rootScope.club = club
+      $rootScope.club = Object.create(club)
       if (toggleSidebar) {
           $rootScope.toggleSidebar()
           window.location = "/app/#" + club.name + "/" + $rootScope.club.id + "/"
@@ -252,9 +260,10 @@ app.run(function($rootScope, $http, $route, $timeout, $location) {
     }
     
     $rootScope.goToCalendar = function(toggleSidebar) {
+      $rootScope.title = "Monster Slayers"
       $rootScope.club.name = ""
       $rootScope.club.id = ""
-      $rootScope.title = "Monster Slayers"
+      $rootScope.club.background = ""
       if ($route.current !== undefined && $route.current.params.club !== undefined) {
         $location.path('/')
       }
@@ -322,6 +331,11 @@ app.run(function($rootScope, $http, $route, $timeout, $location) {
       else{
         return "./calendar/calendar.html"
       }
+    }
+    
+    $rootScope.getBackground = function() {
+      if ($rootScope.club.background == "" || $rootScope.club.background == undefined) { return "https://media.cmcdn.net/7c3c1e3a2f74842c788c/21009917/960x640.png" }
+      return $rootScope.club.background
     }
     
     $rootScope.getModal = function() {

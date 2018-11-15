@@ -7,8 +7,9 @@
     	</button>
     </div>!-->
     <div style="height:10px;"></div>
-    <div class="ui image rounded dimming fluid">
-            <center class="ui dimmer fancy-scroll" style="box-sizing:none;z-index:auto!Important;border-radius:10px!important;width:95%;max-height:100%;height:300px;object-fit:cover;margin-left:2.5%;overflow:hidden">
+    <!--
+    <div class="ui image rounded dimming fluid" style="width:80vw">
+           <center class="ui dimmer fancy-scroll" style="box-sizing:none;z-index:auto!Important;border-radius:10px!important;width:95%;max-height:100%;height:300px;object-fit:cover;margin-left:2.5%;overflow:hidden">
                 <center class="content">
                     <h3 class="ui header inverted">
                         <i class="ui angle double left big fitted icon worldNavBtn" style="display:inline"></i> &nbsp;&nbsp;&nbsp;&nbsp; {{club.world}} &nbsp;&nbsp;&nbsp;&nbsp; <i class="ui angle double right big icon worldNavBtn"></i>
@@ -21,8 +22,9 @@
             </center>
         <img ng-src="{{club.background}}" style="object-fit:cover;height:300px;overflow:hidden;width:95%;border-radius:10px!important;"></img>
     </div>
+    !-->
     
-    <center class="ui one column stackable doubling grid container fancy-scroll" (window:resize)="onResize($event)">
+    <center class="ui one column stackable doubling grid centered container fancy-scroll" (window:resize)="onResize($event)">
             <center class="centered column ui three column stackable grid container" >
                 <div ng-repeat="m in monsters" class="fluid column"  style="max-width:650px">
                     <!--monster quest list!-->
