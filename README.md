@@ -1,6 +1,8 @@
-# Clubs App
+# Pop Dungeon
 ## by Jeremy Yang
 ----------------------------------------------
+#### Pop dungeon is a massively multiplayer online gamified learning app that allows you to study with flashcards in the style of pre-existing applications like Quizlet, but with gratifying animations, monster-slaying, quests, levelling, and world-building. It uses Firebase's older JSON-tree based Real-time database for storing user information, and the Firebase authentication API for authentication. Request to the Firebase API are directly from REST on my front-end server, and secured with reverse-forwarded tokens. The UI was coded with the Semantic-UI CSS library and Angular. This won second place in the Software category at the Central Sound Science and Engineering Fair!
+
 ### Running the server
 
 1) Run `cmd.js`, then type in `.start`.
